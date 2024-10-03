@@ -32,7 +32,7 @@ public abstract class EngravingHelper {
 
     public static int getEngravingLevel(ItemStack itemStack, Engraving engraving) {
         if (!itemStack.isEmpty() && hasEngraving(itemStack, engraving)) {
-            return Mth.clamp(getEngravings(itemStack).get(engraving), 1, 3);
+            return Mth.clamp(getEngravings(itemStack).get(engraving), 1, Math.min(engraving.getMaxLevel(), 3));
         }
         return 0;
     }
@@ -75,7 +75,7 @@ public abstract class EngravingHelper {
     public static Tag getEngravingTag(Engraving engraving, int level) {
         CompoundTag compoundTag = new CompoundTag();
         compoundTag.putString(ENGRAVING_KYE, Objects.requireNonNull(getEngravingId(engraving)));
-        compoundTag.putInt(LEVEL_KYE, Mth.clamp(level, 1, 3));
+        compoundTag.putInt(LEVEL_KYE, Mth.clamp(level, 1, Math.min(engraving.getMaxLevel(), 3)));
         return compoundTag;
     }
 
