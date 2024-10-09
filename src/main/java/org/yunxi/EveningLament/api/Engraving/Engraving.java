@@ -46,7 +46,7 @@ public abstract class Engraving {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Engraving;
+        return obj instanceof Engraving && ((Engraving) obj).getName().equals(this.getName()) && obj.getClass() == this.getClass();
     }
 
     public static class Grade {

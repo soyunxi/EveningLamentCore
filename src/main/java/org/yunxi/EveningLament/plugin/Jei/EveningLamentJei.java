@@ -8,9 +8,11 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.ISubtypeRegistration;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.RegistryObject;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Engraving.Engraving;
@@ -44,6 +46,9 @@ public class EveningLamentJei implements IModPlugin {
                 for (RegistryObject<Engraving> entry : EngravingRegister.ENGRAVINGS.getEntries()) {
                     if (engraving.equals(entry.get())) {
                         MutableComponent Grade = Component.translatable("name.engraving.grade." + engraving.getGrade().getGradeName()).append(" ").append("(").append(Integer.toString(engraving.getGrade().getGradeLevel())).append(")");
+                        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_ITEM,
+                                new HoverEvent.ItemStackInfo(new ItemStack(Items.DIAMOND_AXE)));
+                        MutableComponent mutableComponent = Component.translatable("jei.info." + Eveninglament.MODID + ".engraving.desc").withStyle(style -> style.withHoverEvent(hoverEvent));
                         registration.addIngredientInfo(engravingItem, VanillaTypes.ITEM_STACK,
                                 Component.translatable("jei.info." + Eveninglament.MODID + ".engraving"),
                                 Component.translatable("engraving." + (entry.getId().getNamespace() + "." + entry.getId().getPath())).withStyle(ChatFormatting.BLACK),
@@ -51,6 +56,8 @@ public class EveningLamentJei implements IModPlugin {
                                 Grade,
                                 Component.translatable("engraving." + (entry.getId().getNamespace() + "." + entry.getId().getPath() + ".desc")),
                                 Component.translatable("jei.info." + Eveninglament.MODID + ".engraving.deplete", map.get(engraving) * 2 * engraving.getGrade().getGradeLevel()));
+
+
                     }
                 }
             }

@@ -5,6 +5,6 @@ import org.yunxi.EveningLament.api.Engraving.EngravingCategory;
 
 public class BloodMaryEngraving extends Engraving {
     public BloodMaryEngraving() {
-        super(EngravingCategory.WEAPON, Engraving.Grade.FourthGrade, "blood_mary");
+        super(EngravingCategory.WEAPON, Engraving.Grade.ThirdGrade, "blood_mary");
     }
 }

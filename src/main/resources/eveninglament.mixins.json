@@ -8,6 +8,7 @@
     "BlueSkies.LivingEntityHooksMixin",
     "BlueSkies.PlayerHooksMixin",
     "BlueSkies.SkiesEntityHooksMixin",
+    "Engraving.ItemMixin",
     "Engraving.ItemStackMixin",
     "enigmaticlegacy.CursedRingMixin",
     "enigmaticlegacy.CursedScrollMixin",

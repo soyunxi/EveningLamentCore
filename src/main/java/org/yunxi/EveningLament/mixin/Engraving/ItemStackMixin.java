@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Engraving.Engraving;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
+import org.yunxi.EveningLament.common.items.ItemRegister;
 import org.yunxi.EveningLament.util.EngravingHelper;
 
 import java.util.List;
@@ -37,23 +38,27 @@ public abstract class ItemStackMixin {
         Map<Engraving, Integer> engravings = EngravingHelper.getEngravings(copy);
         if (!engravings.isEmpty()) {
             list.add(Component.translatable("engraving.tooltip"));
-            list.add(Component.translatable("eveninglament.tooltip.engraving.grade_level", EngravingHelper.getGradeLevel(copy)));
+            if (!copy.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())){
+                list.add(Component.translatable("eveninglament.tooltip.engraving.grade_level", EngravingHelper.getGradeLevel(copy)));
+            }
             for (Engraving engraving : engravings.keySet()) {
 
                 MutableComponent translatable = Component.translatable("name.engraving.grade." + engraving.getGrade().getGradeName());
                 for (RegistryObject<Engraving> entry : EngravingRegister.ENGRAVINGS.getEntries()) {
                     if (entry.get().equals(engraving)) {
-                        int level = engravings.get(entry.get());
+                        int level = engravings.get(engraving);
                         MutableComponent engravingName = Component.translatable("engraving." + entry.getId().getNamespace() + "." + entry.getId().getPath());
-
                         for (int i = 0; i < level - 1; i++){
                             engravingName.append(Component.translatable("eveninglament.tooltip.engraving.level"));
                         }
-
                         engravingName.append(Component.translatable("eveninglament.tooltip.space"))
                                 .append("(").append(translatable).append(")");
-
                         list.add(engravingName);
+                        if (copy.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get()) && engravings.size() == 1) {
+                            if (!Screen.hasShiftDown()) {
+                                list.add(Component.translatable("tooltip." + Eveninglament.MODID + ".engraving.holdShift"));
+                            }
+                        }
                         if (Screen.hasShiftDown()) {
                             list.add(Component.translatable("engraving." + (entry.getId().getNamespace() + "." + entry.getId().getPath() + ".desc")).withStyle(ChatFormatting.DARK_GRAY));
                         }

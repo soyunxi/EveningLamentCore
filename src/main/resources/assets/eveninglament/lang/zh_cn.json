@@ -3,6 +3,7 @@
   "engraving.tooltip" : "§6魔咒:",
   "tooltip.eveninglament.engraving.holdShift": "§5按住 §rShift§r§5 查看魔咒介绍。",
   "eveninglament.tooltip.engraving.grade_level": "§4已使用位阶:§r%d",
+  "tooltip.eveninglament.engraving.holdShift": "§5按住 §rShift§r§5 查看魔咒介绍。",
   "name.engraving.grade.common": "§a萌芽",
   "name.engraving.grade.uncommon": "§d含苞",
   "name.engraving.grade.epic": "§c绽放",

@@ -36,7 +36,7 @@ public abstract class EngravingHelper {
 
     public static String getEngravingId(Engraving engraving) {
         for (RegistryObject<Engraving> entry : EngravingRegister.ENGRAVINGS.getEntries()) {
-            if (Objects.equals(entry.get(), engraving)) {
+            if (engraving.equals(entry.get())) {
                 ResourceLocation id = entry.getId();
                 return id.getNamespace() + ":" + id.getPath();
             }

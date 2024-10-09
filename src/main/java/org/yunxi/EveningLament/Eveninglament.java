@@ -20,6 +20,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
+import org.yunxi.EveningLament.common.DamageSource.DamageTypeRegister;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
 import org.yunxi.EveningLament.common.items.EngravingItem;
 import org.yunxi.EveningLament.common.items.ItemRegister;
@@ -40,6 +41,7 @@ public class Eveninglament {
 
         ItemRegister.register(modEventBus);
         EngravingRegister.register(modEventBus);
+//        DamageTypeRegister.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

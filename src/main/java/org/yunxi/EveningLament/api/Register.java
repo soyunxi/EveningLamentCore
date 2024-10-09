@@ -24,5 +24,6 @@ public class Register {
                 .icon(() -> new ItemStack(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get()))
                 .title(Component.translatable("itemGroup.eveninglament.engraving_tab"))
                 .build());
+
     }
 }

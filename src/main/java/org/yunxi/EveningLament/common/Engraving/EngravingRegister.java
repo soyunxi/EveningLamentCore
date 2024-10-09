@@ -23,6 +23,9 @@ public class EngravingRegister {
     public static final RegistryObject<Engraving> BLOOD_MARY =
             ENGRAVINGS.register("blood_mary", BloodMaryEngraving::new);
 
+    public static final RegistryObject<Engraving> VOID_GIFT =
+            ENGRAVINGS.register("void_gift", VoidGiftEngraving::new);
+
     public static void register(IEventBus eventBus) {
         ENGRAVINGS.register(eventBus);
     }

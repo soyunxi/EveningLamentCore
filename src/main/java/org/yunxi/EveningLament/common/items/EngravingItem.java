@@ -13,8 +13,7 @@ import org.yunxi.EveningLament.api.Engraving.Engraving;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
 import org.yunxi.EveningLament.util.EngravingHelper;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class EngravingItem extends Item {
@@ -28,20 +27,31 @@ public class EngravingItem extends Item {
     }
 
     public static List<ItemStack> getEngravings() {
-        List<ItemStack> engravings = new ArrayList<>();
+        List<ItemStack> engravingItems = new ArrayList<>();
 
-        for (int i = 0; i < 6; i++) {
-            for (RegistryObject<Engraving> entry : EngravingRegister.ENGRAVINGS.getEntries()) {
-                if (entry.get().getGrade().getGradeLevel() == i) {
-                    for (int j = 0; j < entry.get().getMaxLevel(); j++){
+        int maxGrade = 5;
+        int minGrade = 0;
+
+        for (RegistryObject<Engraving> entry : EngravingRegister.ENGRAVINGS.getEntries()) {
+            maxGrade = Math.max(entry.get().getMaxLevel(), maxGrade);
+            minGrade = Math.min(entry.get().getMinLevel(), minGrade);
+        }
+
+
+        for (RegistryObject<Engraving> entry : EngravingRegister.ENGRAVINGS.getEntries()) {
+            Engraving engraving = entry.get();
+            for (int i = 0; i < maxGrade + 1; i++) {
+                if (engraving.getGrade().getGradeLevel() == i){
+                    for (int j = 0; j < engraving.getMaxLevel(); j++) {
                         ItemStack itemStack = new ItemStack(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get());
-                        EngravingHelper.addEngraving(itemStack, entry.get(), j + 1);
-                        engravings.add(itemStack);
+                        EngravingHelper.addEngraving(itemStack, engraving, j + 1);
+                        engravingItems.add(itemStack);
                     }
                 }
             }
         }
-        return engravings;
+
+        return engravingItems;
     }
 
 }
