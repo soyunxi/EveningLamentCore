@@ -1,0 +1,10 @@
+{
+  "message_id": "eveninglament:void_damage",
+  "exhaustion": 0,
+  "scaling": "never",
+  "bypasses_armor": true,
+  "bypasses_shield": true,
+  "bypasses_invulnerability": true,
+  "bypasses_magic": true,
+  "no_knock_back": true
+}

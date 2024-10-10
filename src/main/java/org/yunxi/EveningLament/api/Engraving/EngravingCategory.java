@@ -40,7 +40,7 @@ public enum EngravingCategory implements IExtensibleEnum {
             return itemStack.getItem() instanceof ArmorItem armorItem && armorItem.getEquipmentSlot() == EquipmentSlot.HEAD;
         }
     },
-    WEAPON{
+    WEAPON {
         @Override
         public boolean canEnchant(ItemStack itemStack) {
             return itemStack.getItem() instanceof SwordItem;

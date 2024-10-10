@@ -19,9 +19,11 @@
   "engraving.eveninglament.celestial" : "§6飞仙",
   "engraving.eveninglament.blood_mary" : "§4血腥玛丽",
   "engraving.eveninglament.soul_eater" : "§5噬魂者",
+  "engraving.eveninglament.void_gift" : "§5虚空赠礼",
   "engraving.eveninglament.unbreakable.desc" : "装备不会被摧毁",
   "engraving.eveninglament.relentless.desc" : "有50%几率无视目标免伤机制",
   "engraving.eveninglament.celestial.desc" : "创造模式飞行，但每30秒消耗一点耐久",
   "engraving.eveninglament.blood_mary.desc" : "攻击附加目标已损失生命值2.5%的额外伤害",
-  "engraving.eveninglament.soul_eater.desc" : "击杀生物有几率永久增加攻击伤害"
+  "engraving.eveninglament.soul_eater.desc" : "击杀生物有几率永久增加攻击伤害",
+  "engraving.eveninglament.void_gift.desc" : "将 转化为无视护甲的虚空伤害"
 }

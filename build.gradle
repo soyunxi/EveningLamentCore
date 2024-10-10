@@ -214,6 +214,7 @@ dependencies {
     implementation fg.deobf("curse.maven:ars-nouveau-401955:5600384")
     implementation fg.deobf("curse.maven:placebo-283644:5414631")
     implementation fg.deobf("curse.maven:blue-skies-312918:5010316")
+    implementation fg.deobf("curse.maven:structure-gel-api-378802:5278429")
     implementation fg.deobf("curse.maven:champions-unofficial-1074990:5640900")
     implementation fg.deobf("curse.maven:aether-255308:5302178")
     implementation fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:5589681")

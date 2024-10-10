@@ -3,28 +3,36 @@ package org.yunxi.EveningLament.api.Engraving;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.registries.ForgeRegistry;
+import org.yunxi.EveningLament.common.items.ItemRegister;
+import org.yunxi.EveningLament.util.EngravingHelper;
 
 import javax.annotation.Nullable;
 
 public abstract class Engraving {
 
-    private final EngravingCategory EngravingCategory;
+    private final EngravingCategory[] EngravingCategory;
 
     private final Grade Grade;
 
     private final String Name;
 
-    public Engraving(EngravingCategory engravingCategory, Engraving.Grade grade, String name) {
+    public Engraving(EngravingCategory[] engravingCategory, Engraving.Grade grade, String name) {
         this.EngravingCategory = engravingCategory;
         this.Grade = grade;
         this.Name = name;
     }
 
     public boolean canEnchant(ItemStack itemStack) {
-        return EngravingCategory.canEnchant(itemStack);
+        if (itemStack.getItem() != ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get() && EngravingHelper.hasEngraving(itemStack, this)){
+            for (int i = 0; i < EngravingCategory.length; i++) {
+                if (!(EngravingCategory[0]).canEnchant(itemStack)) return false;
+            }
+        }
+
+        return true;
     }
 
-    public EngravingCategory getEngravingCategory() {
+    public EngravingCategory[] getEngravingCategory() {
         return EngravingCategory;
     }
 

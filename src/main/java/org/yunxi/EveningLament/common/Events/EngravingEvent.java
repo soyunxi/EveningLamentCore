@@ -22,6 +22,7 @@ import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -64,11 +65,21 @@ public class EngravingEvent {
         if (directEntity instanceof Player player) {
             ItemStack mainHandItem = player.getMainHandItem();
             if (!mainHandItem.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())) {
-                if (EngravingHelper.hasEngraving(mainHandItem, EngravingRegister.BLOOD_MARY.get())) {
-                    entity.hurt(DamageSources.VOID_DAMAGE, 100.0f);
+                if (EngravingHelper.hasEngraving(mainHandItem, EngravingRegister.VOID_GIFT.get())) {
+//                    entity.hurt(new DamageSource(DamageSources.VOID_DAMAGE), 200);
+                    int level = EngravingHelper.getEngravingLevel(mainHandItem, EngravingRegister.VOID_GIFT.get());
+                    float voidAmount = amount * 0.05f * level >= 10 ? amount * 0.05f * level : 10 + level;
+                    entity.hurt(entity.level().damageSources().outOfBorder(), voidAmount);
+                    event.setAmount(amount * (1.0f - 0.05f * level));
                 }
             }
+
         }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onCriticalHit(CriticalHitEvent event) {
+
     }
 
 
@@ -81,14 +92,18 @@ public class EngravingEvent {
         if (right.getItem() == ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get()) {
             Map<Engraving, Integer> engravings = EngravingHelper.getEngravings(right);
             for (Engraving engraving : engravings.keySet()) {
-                if (engraving.canEnchant(left)){
-                    EngravingHelper.addEngraving(output, engraving, engravings.get(engraving));
-                    cost += engraving.getGrade().getGradeLevel() * 2 * engravings.get(engraving);
+                if (!EngravingHelper.hasEngraving(left, engraving)){
+                    if (engraving.canEnchant(output)) {
+                        EngravingHelper.addEngraving(output, engraving, engravings.get(engraving));
+                        cost += engraving.getGrade().getGradeLevel() * 2 * engravings.get(engraving);
+                    }
                 }
             }
-            event.setOutput(output);
-            event.setCost(cost);
-            event.setMaterialCost(1);
+            if (cost > 0){
+                event.setOutput(output);
+                event.setCost(cost);
+                event.setMaterialCost(1);
+            }
         }
     }
 }

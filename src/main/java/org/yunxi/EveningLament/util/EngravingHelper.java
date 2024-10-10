@@ -55,17 +55,20 @@ public abstract class EngravingHelper {
     public static Map<Engraving, Integer> getEngravings(ItemStack itemStack) {
         HashMap<Engraving, Integer> engravingIntegerHashMap = new HashMap<>();
 
-        CompoundTag orCreateTagElement = itemStack.getOrCreateTagElement(Eveninglament.MODID);
-        if (orCreateTagElement.contains(LIST_TAG_KEY, 9)) {
-            ListTag list = orCreateTagElement.getList(LIST_TAG_KEY, 10);
-            for (int i = 0; i < list.size(); i++) {
-                CompoundTag compound = list.getCompound(i);
-                Engraving engraving = getEngraving(compound.getString(ENGRAVING_KYE));
-                int anInt = getEngravingLevel(compound);
-                engravingIntegerHashMap.put(engraving, anInt);
+        if (itemStack.hasTag()){
+            CompoundTag orCreateTagElement = itemStack.getOrCreateTagElement(Eveninglament.MODID);
+            if (orCreateTagElement.contains(LIST_TAG_KEY, 9)) {
+                ListTag list = orCreateTagElement.getList(LIST_TAG_KEY, 10);
+                for (int i = 0; i < list.size(); i++) {
+                    CompoundTag compound = list.getCompound(i);
+                    Engraving engraving = getEngraving(compound.getString(ENGRAVING_KYE));
+                    int anInt = getEngravingLevel(compound);
+                    engravingIntegerHashMap.put(engraving, anInt);
 
+                }
             }
         }
+
         return engravingIntegerHashMap;
     }
 

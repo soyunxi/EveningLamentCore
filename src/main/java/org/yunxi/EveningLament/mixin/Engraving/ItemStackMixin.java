@@ -32,23 +32,24 @@ public abstract class ItemStackMixin {
 
     @Shadow public abstract ItemStack copy();
 
+    @Shadow public abstract boolean hasTag();
+
     @Inject(method = "getTooltipLines", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;appendEnchantmentNames(Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
     private void EngravingTooltipLines(Player p_41652_, TooltipFlag p_41653_, CallbackInfoReturnable<List<Component>> cir, List list, MutableComponent mutablecomponent, int j) {
         ItemStack copy = this.copy();
         Map<Engraving, Integer> engravings = EngravingHelper.getEngravings(copy);
         if (!engravings.isEmpty()) {
             list.add(Component.translatable("engraving.tooltip"));
-            if (!copy.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())){
+            if (!copy.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())) {
                 list.add(Component.translatable("eveninglament.tooltip.engraving.grade_level", EngravingHelper.getGradeLevel(copy)));
             }
             for (Engraving engraving : engravings.keySet()) {
-
                 MutableComponent translatable = Component.translatable("name.engraving.grade." + engraving.getGrade().getGradeName());
                 for (RegistryObject<Engraving> entry : EngravingRegister.ENGRAVINGS.getEntries()) {
                     if (entry.get().equals(engraving)) {
                         int level = engravings.get(engraving);
                         MutableComponent engravingName = Component.translatable("engraving." + entry.getId().getNamespace() + "." + entry.getId().getPath());
-                        for (int i = 0; i < level - 1; i++){
+                        for (int i = 0; i < level - 1; i++) {
                             engravingName.append(Component.translatable("eveninglament.tooltip.engraving.level"));
                         }
                         engravingName.append(Component.translatable("eveninglament.tooltip.space"))
