@@ -12,6 +12,19 @@
   "jei.info.eveninglament.engraving" : "魔咒：",
   "jei.info.eveninglament.engraving.level" : "等级：%d",
   "jei.info.eveninglament.engraving.deplete" : "刻印消耗：%d",
+  "soulimprint.eveninglament.paranoia": "妄想",
+  "imprint.contain.all": "灵魂共鸣",
+  "imprint.take.noactionskills": "拥有主动技能，至少需要激活%d级灵魂共鸣后开启",
+  "imprint.take.hasactionskills": "拥有主动技能，按下[%s]键释放主动技能",
+  "key.eveninglament.category": "Evening Lament",
+  "key.eveninglament.soul_imprint": "灵魂共鸣主动技能",
+
+  "item.eveninglament.rise": "♭之章",
+  "item.eveninglament.revivification": "♮之章",
+  "item.eveninglament.drop": "♯之章",
+  "tooltip.eveninglament.paranoia1": "每次攻击恢复造成伤害10%的生命值",
+  "tooltip.eveninglament.paranoia2": "对血量低于40%的生物造成20%的额外伤害",
+  "tooltip.eveninglament.paranoia3": "处决血量低于15%的生物",
 
 
   "engraving.eveninglament.unbreakable" : "§5不毁",
@@ -25,5 +38,7 @@
   "engraving.eveninglament.celestial.desc" : "创造模式飞行，但每30秒消耗一点耐久",
   "engraving.eveninglament.blood_mary.desc" : "攻击附加目标已损失生命值2.5%的额外伤害",
   "engraving.eveninglament.soul_eater.desc" : "击杀生物有几率永久增加攻击伤害",
-  "engraving.eveninglament.void_gift.desc" : "将 转化为无视护甲的虚空伤害"
+  "engraving.eveninglament.void_gift.desc" : "将少量伤害转化为无视护甲的虚空伤害",
+
+  "curios.identifier.imprint": "灵魂刻印"
 }

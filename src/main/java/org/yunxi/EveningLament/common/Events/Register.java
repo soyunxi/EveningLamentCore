@@ -1,4 +1,4 @@
-package org.yunxi.EveningLament.api;
+package org.yunxi.EveningLament.common.Events;
 
 
 import net.minecraft.core.registries.Registries;

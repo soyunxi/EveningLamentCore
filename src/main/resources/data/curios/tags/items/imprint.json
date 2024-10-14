@@ -1,0 +1,8 @@
+{
+  "replace": "true",
+  "values": [
+    "eveninglament:drop",
+    "eveninglament:revivification",
+    "eveninglament:rise"
+  ]
+}

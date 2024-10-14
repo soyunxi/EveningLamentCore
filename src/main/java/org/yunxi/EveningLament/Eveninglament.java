@@ -12,9 +12,11 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -25,6 +27,8 @@ import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
 import org.yunxi.EveningLament.common.SoulImprint.SoulImprintRegister;
 import org.yunxi.EveningLament.common.items.EngravingItem;
 import org.yunxi.EveningLament.common.items.ItemRegister;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotTypeMessage;
 
 import java.util.Objects;
 
@@ -54,6 +58,7 @@ public class Eveninglament {
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::enqueue);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -66,6 +71,10 @@ public class Eveninglament {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+    }
+
+    private void enqueue(InterModEnqueueEvent event) {
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("imprint").icon(new ResourceLocation(MODID, "slot/imprint")).size(3).build());
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

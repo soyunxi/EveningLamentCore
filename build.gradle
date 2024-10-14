@@ -205,6 +205,8 @@ dependencies {
     implementation fg.deobf("curse.maven:curse-of-pandora-968311:5577367")
     implementation fg.deobf("curse.maven:l2-complements-758349:5564677")
     implementation fg.deobf("curse.maven:l2library-620203:5447286")
+    implementation fg.deobf("curse.maven:l2library-620203:5447286")
+    implementation fg.deobf("curse.maven:curios-309927:4583413")
 //    implementation fg.deobf("curse.maven:celestial-artifacts-988784:5530718")
 //    implementation fg.deobf("curse.maven:celestial-core-988783:5390583")
 
@@ -220,9 +222,9 @@ dependencies {
     implementation fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:5589681")
 
     // Compile against only the API artifact
-    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.9.1+1.20.1:api"))
+//    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.9.1+1.20.1:api"))
     // Use the full Curios API jar at runtime
-    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.9.1+1.20.1"))
+//    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.9.1+1.20.1"))
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE")
     // MC<minecraft_version>-<registrate_version>
