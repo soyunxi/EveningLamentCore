@@ -5,8 +5,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.contents.KeybindContents;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -25,7 +23,6 @@ import org.yunxi.EveningLament.util.EngravingHelper;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {

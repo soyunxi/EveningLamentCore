@@ -1,11 +1,7 @@
 package org.yunxi.EveningLament;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -18,19 +14,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
-import org.yunxi.EveningLament.common.DamageSource.DamageTypeRegister;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
 import org.yunxi.EveningLament.common.SoulImprint.SoulImprintRegister;
-import org.yunxi.EveningLament.common.items.EngravingItem;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
-
-import java.util.Objects;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Eveninglament.MODID)

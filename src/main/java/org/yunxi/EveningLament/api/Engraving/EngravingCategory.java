@@ -2,8 +2,6 @@ package org.yunxi.EveningLament.api.Engraving;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.IExtensibleEnum;
 

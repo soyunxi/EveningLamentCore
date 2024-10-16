@@ -5,10 +5,6 @@ import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
 import com.google.common.collect.Multimap;
 import dev.xkmc.curseofpandora.init.registrate.CoPAttrs;
-import dev.xkmc.l2screentracker.screen.source.PlayerSlot;
-import dev.xkmc.pandora.content.base.IPandoraHolder;
-import dev.xkmc.pandora.content.menu.edit.PandoraEditPvd;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
@@ -17,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.UUID;
