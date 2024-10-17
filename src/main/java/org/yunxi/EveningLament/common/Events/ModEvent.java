@@ -1,27 +1,47 @@
 package org.yunxi.EveningLament.common.Events;
 
 
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.projectile.FishingHook;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Engraving.Engraving;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 import org.yunxi.EveningLament.util.EngravingHelper;
 
-import java.util.Map;
+import java.util.*;
 
 @Mod.EventBusSubscriber(modid = Eveninglament.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class EngravingEvent {
+public class ModEvent {
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
         Entity directEntity = event.getSource().getDirectEntity();
@@ -62,6 +82,32 @@ public class EngravingEvent {
 
     }
 
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event) {
+        Entity entity = event.getSource().getEntity();
+        LivingEntity livingEntity = event.getEntity();
+        if (entity instanceof Player player) {
+            ItemStack mainHandItem = player.getMainHandItem();
+            if (EngravingHelper.hasEngraving(mainHandItem, EngravingRegister.SOUL_EATER.get())) {
+                Random random = new Random();
+                if (random.nextFloat(100) < EngravingHelper.getEngravingLevel(mainHandItem, EngravingRegister.SOUL_EATER.get()) * 2.5f){
+                    CompoundTag orCreateTagElement = mainHandItem.getOrCreateTagElement(Eveninglament.MODID);
+                    orCreateTagElement.putInt("soul_eater_kill_count", orCreateTagElement.getInt("soul_eater_kill_count") + 1);
+                    player.displayClientMessage(Component.translatable("message.eveninglament.soul_eater_kill_count", orCreateTagElement.getInt("soul_eater_kill_count")), true);
+                }
+            }
+
+        }
+    }
+
+    @SubscribeEvent
+    public static void onItemAttributeModifier(ItemAttributeModifierEvent event) {
+        ItemStack itemStack = event.getItemStack();
+        if (event.getSlotType().equals(EquipmentSlot.MAINHAND) && EngravingHelper.hasEngraving(itemStack, EngravingRegister.SOUL_EATER.get())) {
+            CompoundTag orCreateTagElement = itemStack.getOrCreateTagElement(Eveninglament.MODID);
+            event.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("f8b8f8b8-f8b8-fdb7-f8b8-f8b8f8b8f8b8"), "generic.attack_damage", orCreateTagElement.getInt("soul_eater_kill_count"), AttributeModifier.Operation.ADDITION));
+        }
+    }
 
     @SubscribeEvent
     public static void onAnvilUpdate(AnvilUpdateEvent event) {

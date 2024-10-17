@@ -1,8 +1,13 @@
 package org.yunxi.EveningLament.api.Engraving;
 
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 import org.yunxi.EveningLament.util.EngravingHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Engraving {
 
@@ -21,7 +26,19 @@ public abstract class Engraving {
     public boolean canEnchant(ItemStack itemStack) {
         if (itemStack.getItem() != ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get() && EngravingHelper.hasEngraving(itemStack, this)){
             for (int i = 0; i < EngravingCategory.length; i++) {
-                if (!(EngravingCategory[0]).canEnchant(itemStack)) return false;
+                for (EngravingCategory e : EngravingCategory) {
+                    if (!e.canEnchant(itemStack)) {
+                        return false;
+                    }
+                }
+                for (Enchantment enchantment : EnchantmentHelper.getEnchantments(itemStack).keySet()) {
+                    if (conflictEnchantmentList() != null && conflictEnchantmentList().contains(enchantment)) return false;
+                }
+                for (Engraving engraving : EngravingHelper.getEngravings(itemStack).keySet()) {
+                    if (conflictEngravingList() != null && conflictEngravingList().contains(engraving)) return false;
+                }
+
+
             }
         }
 
@@ -46,6 +63,14 @@ public abstract class Engraving {
 
     public int getMinLevel() {
         return 1;
+    }
+
+    public static List<Enchantment> conflictEnchantmentList() {
+       return null;
+    }
+
+    public static List<Engraving> conflictEngravingList() {
+        return null;
     }
 
     @Override
