@@ -41,7 +41,7 @@
   "engraving.eveninglament.blood_mary.desc" : "攻击附加目标已损失生命值2.5%的额外伤害",
   "engraving.eveninglament.soul_eater.desc" : "击杀生物有几率永久增加攻击伤害",
   "engraving.eveninglament.void_gift.desc" : "将少量伤害转化为无视护甲的虚空伤害",
-  "engraving.eveninglament.world_library.desc" : "将钓上的物品转换为随机附魔的一级附魔书，代价是消耗更高的耐久",
+  "engraving.eveninglament.world_library.desc" : "将钓上的物品转换为随机附魔书，品质与幸运值成正比，但使用消耗的耐久会提高",
 
   "curios.identifier.imprint": "灵魂刻印"
 }

@@ -35,7 +35,7 @@ public class AquaFishingBobberEntityMixin {
         ItemStack fishingRodItem = this.fishingRod;
 
         if (EngravingHelper.hasEngraving(fishingRodItem, EngravingRegister.WORLD_LIBRARY.get())) {
-            List<Enchantment> enchantments = new ArrayList<>();
+            /*List<Enchantment> enchantments = new ArrayList<>();
             for (Enchantment enchantment : ForgeRegistries.ENCHANTMENTS) {
                 if (enchantment.isAllowedOnBooks() && enchantment.isDiscoverable()) enchantments.add(enchantment);
             }
@@ -44,10 +44,11 @@ public class AquaFishingBobberEntityMixin {
             Enchantment enchantment = enchantments.get(r.nextInt(enchantments.size()));
             enchantmentMap.put(enchantment, 1);
             ItemStack out = new ItemStack(Items.ENCHANTED_BOOK);
-            EnchantmentHelper.setEnchantments(enchantmentMap, out);
+            EnchantmentHelper.setEnchantments(enchantmentMap, out);*/
+            ItemStack out = EngravingHelper.getWorldLibraryOutPut(angler);
             lootEntries.clear();
             lootEntries.add(out);
-            fishingRodItem.setDamageValue(4);
+            fishingRodItem.hurtAndBreak(5, angler, player -> player.broadcastBreakEvent(player.getUsedItemHand()));
         }
     }
 }

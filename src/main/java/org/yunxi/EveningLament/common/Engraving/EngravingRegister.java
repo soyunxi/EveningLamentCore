@@ -28,7 +28,7 @@ public class EngravingRegister {
             ENGRAVINGS.register("void_gift", VoidGiftEngraving::new);
 
     public static final RegistryObject<Engraving> WORLD_LIBRARY =
-            ENGRAVINGS.register("world_library", WorldLibrary::new);
+            ENGRAVINGS.register("world_library", WorldLibraryEngraving::new);
 
     public static final RegistryObject<Engraving> SOUL_EATER =
             ENGRAVINGS.register("soul_eater", SoulEaterEngraving::new);

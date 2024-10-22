@@ -27,8 +27,10 @@ import net.minecraftforge.fml.common.Mod;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Engraving.Engraving;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
+import org.yunxi.EveningLament.common.SoulImprint.SoulImprintRegister;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 import org.yunxi.EveningLament.util.EngravingHelper;
+import org.yunxi.EveningLament.util.SoulImprintHelper;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -50,7 +52,19 @@ public class ModEvent {
                 }
             }
 
-            player.displayClientMessage(Component.nullToEmpty(Boolean.toString(EngravingHelper.canEngraving(mainHandItem, EngravingRegister.VOID_GIFT.get()))), false);
+            if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 0) {
+                player.heal(amount * 0.1f);
+            }
+            if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 1) {
+                if (entityLiving.getHealth() / entityLiving.getMaxHealth() <= 0.4f) {
+                    event.setAmount(amount + amount * 0.2f);
+                }
+            }
+            if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 2) {
+                if (entityLiving.getHealth() / entityLiving.getMaxHealth() <= 0.15f) {
+                    entityLiving.hurt(player.level().damageSources().fellOutOfWorld(), entityLiving.getMaxHealth() * 1000);
+                }
+            }
         }
     }
 
