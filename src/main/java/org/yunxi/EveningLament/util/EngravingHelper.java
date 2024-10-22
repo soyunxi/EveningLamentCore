@@ -6,14 +6,16 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.registries.RegistryObject;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Engraving.Engraving;
+import org.yunxi.EveningLament.api.Engraving.EngravingCategory;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
+import org.yunxi.EveningLament.common.items.ItemRegister;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class EngravingHelper {
     private EngravingHelper() {}
@@ -92,6 +94,35 @@ public abstract class EngravingHelper {
             ListTag list = orCreateTagElement.getList(LIST_TAG_KEY, 10);
             list.add(getEngravingTag(engraving, level));
         }
+    }
+
+    public static boolean canEngraving(ItemStack itemStack, Engraving engraving) {
+        if (!hasEngraving(itemStack, engraving) && !itemStack.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())) {
+            EngravingCategory[] engravingCategory = engraving.getEngravingCategory();
+            Set<Engraving> engravings = engraving.conflictEngravingList().length > 0 ? new HashSet<>(List.of(engraving.conflictEngravingList())) : null;
+            Set<Enchantment> enchantments = engraving.conflictEnchantmentList().length > 0 ? new HashSet<>(List.of(engraving.conflictEnchantmentList())) : null;
+            Iterator<Engraving> engravingIterator = getEngravings(itemStack).keySet().iterator();
+            Iterator<Enchantment> enchantmentIterator = EnchantmentHelper.getEnchantments(itemStack).keySet().iterator();
+            for (EngravingCategory e : engravingCategory) {
+                if (!e.canEnchant(itemStack)) return false;
+            }
+
+            if (engravings != null){
+                while (engravingIterator.hasNext()) {
+                    Engraving next = engravingIterator.next();
+                    if (engravings.contains(next)) return false;
+                }
+            }
+
+            if (enchantments != null){
+                while (enchantmentIterator.hasNext()) {
+                    Enchantment next = enchantmentIterator.next();
+                    if (enchantments.contains(next)) return false;
+                }
+            }
+
+        }
+        return true;
     }
 
     public static void setEngravingLevel(ItemStack itemStack, Engraving engraving, int level) {

@@ -7,6 +7,7 @@ import org.yunxi.EveningLament.common.items.ItemRegister;
 import org.yunxi.EveningLament.util.EngravingHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class Engraving {
@@ -21,28 +22,6 @@ public abstract class Engraving {
         this.EngravingCategory = engravingCategory;
         this.Grade = grade;
         this.Name = name;
-    }
-
-    public boolean canEnchant(ItemStack itemStack) {
-        if (itemStack.getItem() != ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get() && EngravingHelper.hasEngraving(itemStack, this)){
-            for (int i = 0; i < EngravingCategory.length; i++) {
-                for (EngravingCategory e : EngravingCategory) {
-                    if (!e.canEnchant(itemStack)) {
-                        return false;
-                    }
-                }
-                for (Enchantment enchantment : EnchantmentHelper.getEnchantments(itemStack).keySet()) {
-                    if (conflictEnchantmentList() != null && conflictEnchantmentList().contains(enchantment)) return false;
-                }
-                for (Engraving engraving : EngravingHelper.getEngravings(itemStack).keySet()) {
-                    if (conflictEngravingList() != null && conflictEngravingList().contains(engraving)) return false;
-                }
-
-
-            }
-        }
-
-        return true;
     }
 
     public EngravingCategory[] getEngravingCategory() {
@@ -65,17 +44,22 @@ public abstract class Engraving {
         return 1;
     }
 
-    public static List<Enchantment> conflictEnchantmentList() {
-       return null;
+    public Enchantment[] conflictEnchantmentList() {
+       return new Enchantment[0];
     }
 
-    public static List<Engraving> conflictEngravingList() {
-        return null;
+    public Engraving[] conflictEngravingList() {
+        return new Engraving[0];
     }
 
     @Override
     public boolean equals(Object obj) {
         return obj instanceof Engraving && ((Engraving) obj).getName().equals(this.getName()) && obj.getClass() == this.getClass();
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     public static class Grade {
