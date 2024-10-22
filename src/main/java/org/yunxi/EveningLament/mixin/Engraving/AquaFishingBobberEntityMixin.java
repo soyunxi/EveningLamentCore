@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
@@ -29,8 +30,8 @@ import java.util.*;
 public class AquaFishingBobberEntityMixin {
     @Shadow @Final private ItemStack fishingRod;
 
-    @Inject(method = "retrieve", at = @At(value = "INVOKE", target = "Lcom/teammetallurgy/aquaculture/entity/AquaFishingBobberEntity;getLoot(Lnet/minecraft/world/level/storage/loot/LootParams;Lnet/minecraft/server/level/ServerLevel;)Ljava/util/List;"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void retrieve(ItemStack stack, CallbackInfoReturnable<Integer> cir, boolean isAdminRod, Player angler, Level level, int rodDamage, ItemFishedEvent event, ServerLevel serverLevel, LootParams lootParams) {
+    @Inject(method = "spawnLoot", at = @At(value = "HEAD"))
+    private void onspawnLoot(Player angler, List<ItemStack> lootEntries, CallbackInfo ci) {
         ItemStack fishingRodItem = this.fishingRod;
 
         if (EngravingHelper.hasEngraving(fishingRodItem, EngravingRegister.WORLD_LIBRARY.get())) {
@@ -44,7 +45,9 @@ public class AquaFishingBobberEntityMixin {
             enchantmentMap.put(enchantment, 1);
             ItemStack out = new ItemStack(Items.ENCHANTED_BOOK);
             EnchantmentHelper.setEnchantments(enchantmentMap, out);
-
+            lootEntries.clear();
+            lootEntries.add(out);
+            fishingRodItem.setDamageValue(4);
         }
     }
 }

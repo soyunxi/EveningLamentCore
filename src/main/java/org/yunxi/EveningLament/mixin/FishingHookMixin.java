@@ -62,6 +62,7 @@ public abstract class FishingHookMixin {
             EnchantmentHelper.setEnchantments(enchantmentMap, out);
             list.clear();
             list.add(out);
+            fishingRodItem.setDamageValue(4);
         }
     }
 }

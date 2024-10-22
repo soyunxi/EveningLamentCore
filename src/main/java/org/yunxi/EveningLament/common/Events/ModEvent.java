@@ -1,6 +1,7 @@
 package org.yunxi.EveningLament.common.Events;
 
 
+import com.teammetallurgy.aquaculture.entity.AquaFishingBobberEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -98,11 +100,14 @@ public class ModEvent {
     @SubscribeEvent
     public static void onItemAttributeModifier(ItemAttributeModifierEvent event) {
         ItemStack itemStack = event.getItemStack();
-        if (event.getSlotType().equals(EquipmentSlot.MAINHAND) && EngravingHelper.hasEngraving(itemStack, EngravingRegister.SOUL_EATER.get())) {
-            CompoundTag orCreateTagElement = itemStack.getOrCreateTagElement(Eveninglament.MODID);
-            event.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("f8b8f8b8-f8b8-fdb7-f8b8-f8b8f8b8f8b8"), "generic.attack_damage", orCreateTagElement.getInt("soul_eater_kill_count"), AttributeModifier.Operation.ADDITION));
+        if (!itemStack.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())){
+            if (event.getSlotType().equals(EquipmentSlot.MAINHAND) && EngravingHelper.hasEngraving(itemStack, EngravingRegister.SOUL_EATER.get())) {
+                CompoundTag orCreateTagElement = itemStack.getOrCreateTagElement(Eveninglament.MODID);
+                event.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("f8b8f8b8-f8b8-fdb7-f8b8-f8b8f8b8f8b8"), "generic.attack_damage", orCreateTagElement.getInt("soul_eater_kill_count"), AttributeModifier.Operation.ADDITION));
+            }
         }
     }
+
 
     @SubscribeEvent
     public static void onAnvilUpdate(AnvilUpdateEvent event) {
