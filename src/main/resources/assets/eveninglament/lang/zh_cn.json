@@ -26,6 +26,7 @@
   "tooltip.eveninglament.paranoia2": "对血量低于40%的生物造成20%的额外伤害",
   "tooltip.eveninglament.paranoia3": "处决血量低于15%的生物",
   "message.eveninglament.soul_eater_kill_count": "§5成功吞噬了一个生物，当前已吞噬了§r§6%d§r§5个生物",
+  "message.eveninglament.gamephase.break": "§c你还不能破坏这个方块，按住shift以强制破坏该方块",
 
 
   "engraving.eveninglament.unbreakable" : "§5不毁",

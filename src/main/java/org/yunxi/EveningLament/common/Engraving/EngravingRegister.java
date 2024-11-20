@@ -33,6 +33,12 @@ public class EngravingRegister {
     public static final RegistryObject<Engraving> SOUL_EATER =
             ENGRAVINGS.register("soul_eater", SoulEaterEngraving::new);
 
+    public static final RegistryObject<Engraving> WORLD_FPS =
+            ENGRAVINGS.register("world_fps", WorldFPSEngraving::new);
+
+    public static final RegistryObject<Engraving> GLUTTONY =
+            ENGRAVINGS.register("gluttony", GluttonyEngraving::new);
+
     public static void register(IEventBus eventBus) {
         ENGRAVINGS.register(eventBus);
     }

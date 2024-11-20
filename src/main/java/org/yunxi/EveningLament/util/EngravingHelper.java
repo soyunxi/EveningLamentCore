@@ -1,7 +1,6 @@
 package org.yunxi.EveningLament.util;
 
 import dev.shadowsoffire.apotheosis.ench.asm.EnchHooks;
-import dev.shadowsoffire.apotheosis.mixin.EnchantmentHelperMixin;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -13,7 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.yunxi.EveningLament.Eveninglament;
@@ -110,8 +108,9 @@ public abstract class EngravingHelper {
             Set<Enchantment> enchantments = engraving.conflictEnchantmentList().length > 0 ? new HashSet<>(List.of(engraving.conflictEnchantmentList())) : null;
             Iterator<Engraving> engravingIterator = getEngravings(itemStack).keySet().iterator();
             Iterator<Enchantment> enchantmentIterator = EnchantmentHelper.getEnchantments(itemStack).keySet().iterator();
-            for (EngravingCategory e : engravingCategory) {
-                if (!e.canEnchant(itemStack)) return false;
+            for (int i = 0; i < engravingCategory.length; i++) {
+                if (engravingCategory[i].canEnchant(itemStack)) break;
+                if (i == engravingCategory.length - 1) return false;
             }
 
             if (engravings != null){
@@ -157,37 +156,5 @@ public abstract class EngravingHelper {
             }
         }
         return gradeLevel;
-    }
-
-
-
-
-
-    public static ItemStack getWorldLibraryOutPut(Player player) {
-        ItemStack itemStack = new ItemStack(Items.ENCHANTED_BOOK);
-        float luck = player.getLuck();
-        List<Enchantment> enchantments = new ArrayList<>();
-        Map<Enchantment, Integer> out = new HashMap<>();
-        for (Enchantment enchantment : ForgeRegistries.ENCHANTMENTS) {
-            if (enchantment.isAllowedOnBooks()){
-                if (!enchantment.isDiscoverable()) {
-                    if (enchantment.isTreasureOnly() && luck > 5){
-                        enchantments.add(enchantment);
-                    } else if (!enchantment.isTreasureOnly()){
-                        enchantments.add(enchantment);
-                    }
-                }
-            }
-        }
-
-        RandomSource random = player.getRandom();
-        int max = Math.min(random.nextIntBetweenInclusive(1, (int) (luck / 5)), 5);
-        for (int i = 0; i < max; i++) {
-            Enchantment enchantment = enchantments.get(random.nextInt(enchantments.size()));
-            int level = random.nextIntBetweenInclusive(1, Math.min(EnchHooks.getMaxLevel(enchantment), Math.max(1, (int) luck)));
-            out.put(enchantment, level);
-        }
-        EnchantmentHelper.setEnchantments(out, itemStack);
-        return itemStack;
     }
 }
