@@ -227,11 +227,10 @@ public class ModEvent {
                     entity.displayClientMessage(worldLibraryOutPut.getDisplayName(),false);
                     event.getDrops().clear();
                     ItemEntity itemEntity = new ItemEntity(entity.level(), hookEntity.getX(), hookEntity.getY(), hookEntity.getZ(), worldLibraryOutPut);
-                    BlockPos pos = event.getHookEntity().getOnPos(); //获取鱼鳔实体坐标
+                    BlockPos pos = event.getHookEntity().getOnPos();
                     double d0 = entity.getX() - pos.getX();
                     double d1 = entity.getY() - pos.getY();
                     double d2 = entity.getZ() - pos.getZ();
-                    //设置tnt运动方向
                     itemEntity.setDeltaMovement(d0 * 0.1D, d1 * 0.1D + Math.sqrt(Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2)) * 0.08D, d2 * 0.1D);
                     entity.level().addFreshEntity(itemEntity);
                 }
