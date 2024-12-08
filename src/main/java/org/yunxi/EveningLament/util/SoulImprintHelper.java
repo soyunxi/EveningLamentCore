@@ -8,7 +8,7 @@ import org.yunxi.EveningLament.api.Imprint.SoulImprint;
 
 import java.util.List;
 
-public class SoulImprintHelper {
+public final class SoulImprintHelper {
     private SoulImprintHelper() {}
 
     public static int getTakeEffect(SoulImprint soulImprint) {

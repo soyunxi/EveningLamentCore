@@ -5,11 +5,12 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "eveninglament.refmap.json",
   "mixins": [
-    "Engraving.FishingHookMixin",
+    "LightningBoltMixin",
     "BlueSkies.LivingEntityHooksMixin",
     "BlueSkies.PlayerHooksMixin",
     "BlueSkies.SkiesEntityHooksMixin",
     "Engraving.AquaFishingBobberEntityMixin",
+    "Engraving.FishingHookMixin",
     "Engraving.ItemMixin",
     "Engraving.ItemStackMixin",
     "enigmaticlegacy.CursedRingMixin",

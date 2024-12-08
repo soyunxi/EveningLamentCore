@@ -201,7 +201,7 @@ dependencies {
     implementation fileTree(dir: 'libs', includes: ['*.jar'])
 
     implementation fg.deobf("curse.maven:enigmatic-legacy-336184:5600004")
-    implementation fg.deobf("curse.maven:enigmatic-addons-1030121:5736237")
+    implementation fg.deobf("curse.maven:enigmatic-addons-1030121:5882747")
     implementation fg.deobf("curse.maven:curse-of-pandora-968311:5577367")
     implementation fg.deobf("curse.maven:l2-complements-758349:5564677")
     implementation fg.deobf("curse.maven:l2library-620203:5447286")
@@ -223,6 +223,7 @@ dependencies {
     implementation fg.deobf("curse.maven:aquaculture-60028:5585290")
     implementation fg.deobf("curse.maven:malum-484064:5848770")
     implementation fg.deobf("curse.maven:game-phase-975444:5115068")
+    implementation fg.deobf("curse.maven:ice-and-fire-dragons-264231:5633453")
 
     // Compile against only the API artifact
 //    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.9.1+1.20.1:api"))

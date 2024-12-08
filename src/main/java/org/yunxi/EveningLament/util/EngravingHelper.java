@@ -17,7 +17,7 @@ import org.yunxi.EveningLament.common.items.ItemRegister;
 
 import java.util.*;
 
-public abstract class EngravingHelper {
+public final class EngravingHelper {
     private EngravingHelper() {}
 
     public static final String LIST_TAG_KEY = "Engravings";
