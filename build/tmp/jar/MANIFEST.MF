@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: eveninglament
+Specification-Vendor: 
+Specification-Version: 1
+Implementation-Title: evening-lament
+Implementation-Version: 0.1-Alpha
+Implementation-Vendor: 
+Implementation-Timestamp: 2024-12-08T23:49:44+0800
+MixinConfigs: eveninglament.mixins.json
+

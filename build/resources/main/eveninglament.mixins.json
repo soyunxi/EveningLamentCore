@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.yunxi.EveningLament.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "eveninglament.refmap.json",
+  "mixins": [
+    "LightningBoltMixin",
+    "BlueSkies.LivingEntityHooksMixin",
+    "BlueSkies.PlayerHooksMixin",
+    "BlueSkies.SkiesEntityHooksMixin",
+    "Engraving.AquaFishingBobberEntityMixin",
+    "Engraving.FishingHookMixin",
+    "Engraving.ItemMixin",
+    "Engraving.ItemStackMixin",
+    "Engraving.PickaxeItemMixin",
+    "enigmaticlegacy.CursedRingMixin",
+    "enigmaticlegacy.CursedScrollMixin",
+    "enigmaticlegacy.EnigmaticEventHandlerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

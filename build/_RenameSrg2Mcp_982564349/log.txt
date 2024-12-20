@@ -1,0 +1,15 @@
+Java Launcher: C:\Users\yunxi\.gradle\jdks\eclipse_adoptium-17-amd64-windows\jdk-17.0.12+7\bin\java.exe
+Arguments: '--task, SRG_TO_MCP, --input, C:\Users\yunxi\.gradle\caches\modules-2\files-2.1\curse.maven\jade-324717\5672013\7ec2e10db945924166447ea64ebaad7a142651eb\jade-324717-5672013.jar, --output, C:\Users\yunxi\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\jade-324717\5672013_mapped_parchment_2023.09.03-1.20.1\jade-324717-5672013_mapped_parchment_2023.09.03-1.20.1.jar, --mcp, C:\Users\yunxi\.gradle\caches\parchmentgradle\org\parchmentmc\data\parchment-1.20.1\2023.09.03\parchment-1.20.1-2023.09.03.zip, --strip-signatures'
+Classpath:
+ - C:\Users\yunxi\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\installertools\1.4.4\installertools-1.4.4-fatjar.jar
+Working directory: F:\Minecraft Mod\Evening Lament\build\_RenameSrg2Mcp_982564349
+Main class: net.minecraftforge.installertools.ConsoleTool
+====================================
+Task: SRG_TO_MCP
+Input:  C:\Users\yunxi\.gradle\caches\modules-2\files-2.1\curse.maven\jade-324717\5672013\7ec2e10db945924166447ea64ebaad7a142651eb\jade-324717-5672013.jar
+Output: C:\Users\yunxi\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\jade-324717\5672013_mapped_parchment_2023.09.03-1.20.1\jade-324717-5672013_mapped_parchment_2023.09.03-1.20.1.jar
+MCP:    C:\Users\yunxi\.gradle\caches\parchmentgradle\org\parchmentmc\data\parchment-1.20.1\2023.09.03\parchment-1.20.1-2023.09.03.zip
+Loading MCP Data
+Processing ZIP file
+Stripped Manifest of sha digests
+Process complete

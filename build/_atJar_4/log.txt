@@ -1,0 +1,7 @@
+Java Launcher: C:\Users\yunxi\.gradle\jdks\eclipse_adoptium-17-amd64-windows\jdk-17.0.12+7\bin\java.exe
+Arguments: '--inJar, F:\Minecraft Mod\Evening Lament\build\fg_cache\net\minecraftforge\forge\1.20.1-47.3.5\forge-1.20.1-47.3.5-injected.jar, --outJar, F:\Minecraft Mod\Evening Lament\build\fg_cache\net\minecraftforge\forge\1.20.1-47.3.5_mapped_official_1.20.1\forge-1.20.1-47.3.5_mapped_official_1.20.1.jar, --logFile, accesstransform.log, --atFile, F:\Minecraft Mod\Evening Lament\src\main\resources\META-INF\accesstransformer.cfg, --atFile, F:\Minecraft Mod\Evening Lament\build\_atJar_4\parent_at.cfg'
+Classpath:
+ - C:\Users\yunxi\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\accesstransformers\8.2.0\accesstransformers-8.2.0-fatjar.jar
+Working directory: F:\Minecraft Mod\Evening Lament\build\_atJar_4
+Main class: net.minecraftforge.accesstransformer.TransformerProcessor
+====================================

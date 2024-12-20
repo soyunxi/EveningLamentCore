@@ -1,0 +1,38 @@
+{
+  "mappings": {
+    "org/yunxi/EveningLament/mixin/Engraving/FishingHookMixin": {
+      "retrieve": "Lnet/minecraft/world/entity/projectile/FishingHook;m_37156_(Lnet/minecraft/world/item/ItemStack;)I"
+    },
+    "org/yunxi/EveningLament/mixin/Engraving/ItemStackMixin": {
+      "Lnet/minecraft/world/item/ItemStack;appendEnchantmentNames(Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V": "Lnet/minecraft/world/item/ItemStack;m_41709_(Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V",
+      "getTooltipLines": "Lnet/minecraft/world/item/ItemStack;m_41651_(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;)Ljava/util/List;"
+    },
+    "org/yunxi/EveningLament/mixin/Engraving/ItemMixin": {
+      "isFoil": "Lnet/minecraft/world/item/Item;m_5812_(Lnet/minecraft/world/item/ItemStack;)Z"
+    },
+    "org/yunxi/EveningLament/mixin/LightningBoltMixin": {
+      "Lnet/minecraft/world/entity/LightningBolt;spawnFire(I)V": "Lnet/minecraft/world/entity/LightningBolt;m_20870_(I)V",
+      "tick": "Lnet/minecraft/world/entity/LightningBolt;m_8119_()V",
+      "spawnFire": "Lnet/minecraft/world/entity/LightningBolt;m_20870_(I)V"
+    }
+  },
+  "data": {
+    "searge": {
+      "org/yunxi/EveningLament/mixin/Engraving/FishingHookMixin": {
+        "retrieve": "Lnet/minecraft/world/entity/projectile/FishingHook;m_37156_(Lnet/minecraft/world/item/ItemStack;)I"
+      },
+      "org/yunxi/EveningLament/mixin/Engraving/ItemStackMixin": {
+        "Lnet/minecraft/world/item/ItemStack;appendEnchantmentNames(Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V": "Lnet/minecraft/world/item/ItemStack;m_41709_(Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V",
+        "getTooltipLines": "Lnet/minecraft/world/item/ItemStack;m_41651_(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;)Ljava/util/List;"
+      },
+      "org/yunxi/EveningLament/mixin/Engraving/ItemMixin": {
+        "isFoil": "Lnet/minecraft/world/item/Item;m_5812_(Lnet/minecraft/world/item/ItemStack;)Z"
+      },
+      "org/yunxi/EveningLament/mixin/LightningBoltMixin": {
+        "Lnet/minecraft/world/entity/LightningBolt;spawnFire(I)V": "Lnet/minecraft/world/entity/LightningBolt;m_20870_(I)V",
+        "tick": "Lnet/minecraft/world/entity/LightningBolt;m_8119_()V",
+        "spawnFire": "Lnet/minecraft/world/entity/LightningBolt;m_20870_(I)V"
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+org/yunxi/EveningLament/mixin/Engraving/FishingHookMixin getPlayerOwner ()Lnet/minecraft/world/entity/player/Player; m_37168_
+org/yunxi/EveningLament/mixin/Engraving/ItemStackMixin copy ()Lnet/minecraft/world/item/ItemStack; m_41777_
+org/yunxi/EveningLament/mixin/Engraving/ItemStackMixin hasTag ()Z m_41782_
+org/yunxi/EveningLament/mixin/LightningBoltMixin spawnFire (I)V m_20870_
