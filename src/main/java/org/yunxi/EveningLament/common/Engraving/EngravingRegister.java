@@ -39,6 +39,9 @@ public class EngravingRegister {
     public static final RegistryObject<Engraving> GLUTTONY =
             ENGRAVINGS.register("gluttony", GluttonyEngraving::new);
 
+    public static final RegistryObject<Engraving> SPOON =
+            ENGRAVINGS.register("spoon", SpoonEngraving::new);
+
     public static void register(IEventBus eventBus) {
         ENGRAVINGS.register(eventBus);
     }

@@ -50,6 +50,12 @@ public enum EngravingCategory implements IExtensibleEnum {
             return itemStack.getItem() instanceof DiggerItem;
         }
     },
+    PICKAXE{
+        @Override
+        public boolean canEnchant(ItemStack itemStack) {
+            return itemStack.getItem() instanceof PickaxeItem;
+        }
+    },
     FISHING_ROD{
         @Override
         public boolean canEnchant(ItemStack itemStack) {
