@@ -13,7 +13,7 @@
     "Engraving.FishingHookMixin",
     "Engraving.ItemMixin",
     "Engraving.ItemStackMixin",
-    "Engraving.PickaxeItemMixin",
+    "Engraving.DiggerItemMixin",
     "enigmaticlegacy.CursedRingMixin",
     "enigmaticlegacy.CursedScrollMixin",
     "enigmaticlegacy.EnigmaticEventHandlerMixin"
