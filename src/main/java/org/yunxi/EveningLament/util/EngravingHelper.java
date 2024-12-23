@@ -98,15 +98,10 @@ public final class EngravingHelper {
 
     public static boolean canEngraving(ItemStack itemStack, Engraving engraving) {
         if (!hasEngraving(itemStack, engraving) && !itemStack.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())) {
-            EngravingCategory[] engravingCategory = engraving.getEngravingCategory();
             Set<Engraving> engravings = engraving.conflictEngravingList().length > 0 ? new HashSet<>(List.of(engraving.conflictEngravingList())) : null;
             Set<Enchantment> enchantments = engraving.conflictEnchantmentList().length > 0 ? new HashSet<>(List.of(engraving.conflictEnchantmentList())) : null;
             Iterator<Engraving> engravingIterator = getEngravings(itemStack).keySet().iterator();
             Iterator<Enchantment> enchantmentIterator = EnchantmentHelper.getEnchantments(itemStack).keySet().iterator();
-            for (int i = 0; i < engravingCategory.length; i++) {
-                if (engravingCategory[i].canEnchant(itemStack)) break;
-                if (i == engravingCategory.length - 1) return false;
-            }
 
             if (engravings != null){
                 while (engravingIterator.hasNext()) {
@@ -123,7 +118,7 @@ public final class EngravingHelper {
             }
 
         }
-        return true;
+        return engraving.canEnchant(itemStack);
     }
 
     public static void setEngravingLevel(ItemStack itemStack, Engraving engraving, int level) {

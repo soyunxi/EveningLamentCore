@@ -1,5 +1,6 @@
 package org.yunxi.EveningLament.api.Engraving;
 
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public abstract class Engraving {
@@ -42,6 +43,13 @@ public abstract class Engraving {
 
     public Engraving[] conflictEngravingList() {
         return new Engraving[0];
+    }
+
+    public boolean canEnchant(ItemStack itemStack) {
+        for (EngravingCategory engravingCategory : getEngravingCategory()) {
+            if (engravingCategory.canEnchant(itemStack)) return true;
+        }
+        return false;
     }
 
     @Override
