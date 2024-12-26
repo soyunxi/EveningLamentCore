@@ -1,96 +1,54 @@
 package org.yunxi.EveningLament.api.Imprint;
 
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class SoulImprint {
-    private final ImprintItem oneImprint;
+    private final ImprintItem[] ImprintItems; //灵魂刻印物品
 
-    private final ImprintItem twoImprint;
+    private final Map<MutableComponent, Boolean> effects; //效果
 
-    private final ImprintItem threeImprint;
+    private final MutableComponent tipMutableComponent; //灵魂共鸣的名字
 
-    private final Component oneEffect;
-
-    private final Component twoEffect;
-
-    private final Component threeEffect;
-
-    private final Component tipComponent;
-
-    private final int activation;
-
-    private final boolean hasActionSkills;
-
-    public SoulImprint(ImprintItem oneImprint, ImprintItem twoImprint, ImprintItem threeImprint, Component oneEffect, Component twoEffect, Component threeEffect, Component tipComponent, int activation, boolean hasActionSkills) {
-        this.oneImprint = oneImprint;
-        this.twoImprint = twoImprint;
-        this.threeImprint = threeImprint;
-        this.oneEffect = oneEffect;
-        this.twoEffect = twoEffect;
-        this.threeEffect = threeEffect;
-        this.tipComponent = tipComponent;
-        this.activation = activation;
-        this.hasActionSkills = hasActionSkills;
-    }
-
-    public SoulImprint(ImprintItem oneImprint, ImprintItem twoImprint, Component oneEffect, Component twoEffect, Component tipComponent, int activation, boolean hasActionSkills) {
-        this.oneImprint = oneImprint;
-        this.twoImprint = twoImprint;
-        this.threeImprint = null;
-        this.oneEffect = oneEffect;
-        this.twoEffect = twoEffect;
-        this.threeEffect = null;
-        this.tipComponent = tipComponent;
-        this.activation = activation;
-        this.hasActionSkills = hasActionSkills;
-    }
-
-    public SoulImprint(ImprintItem oneImprint, Component oneEffect, Component tipComponent, int activation, boolean hasActionSkills) {
-        this.oneImprint = oneImprint;
-        this.twoImprint = null;
-        this.threeImprint = null;
-        this.oneEffect = oneEffect;
-        this.twoEffect = null;
-        this.threeEffect = null;
-        this.tipComponent = tipComponent;
-        this.activation = activation;
-        this.hasActionSkills = hasActionSkills;
+    public SoulImprint(ImprintItem[] ImprintItems, Map<MutableComponent, Boolean> effects, MutableComponent tipMutableComponent) {
+        this.ImprintItems = ImprintItems;
+        if (effects.keySet().size() > ImprintItems.length) {
+            this.effects = new HashMap<>();
+            int count = 0;
+            for (MutableComponent key : effects.keySet()) {
+                if (count++ >= ImprintItems.length) break;
+                this.effects.put(key, effects.get(key));
+                count++;
+            }
+        } else this.effects = effects;
+        this.tipMutableComponent = tipMutableComponent;
     }
 
     public boolean hasActionSkills() {
-        return hasActionSkills;
-    }
-
-    public List<ImprintItem> getImprintList() {
-        List<ImprintItem> list = new ArrayList<>();
-        if (this.oneImprint != null) list.add(this.oneImprint);
-        if (this.twoImprint != null) list.add(this.twoImprint);
-        if (this.threeImprint != null) list.add(this.threeImprint);
-        return list;
+        for (MutableComponent mutableComponent : effects.keySet()) {
+            if (effects.get(mutableComponent)) return true;
+        }
+        return false;
     }
 
     public int getEffectSize() {
-        return getEffectList().size();
+        return this.effects.size();
     }
 
-    public List<Component> getEffectList() {
-        List<Component> list = new ArrayList<>();
-        if (this.oneEffect != null) list.add(this.oneEffect);
-        if (this.twoEffect != null) list.add(this.twoEffect);
-        if (this.threeEffect != null) list.add(this.threeEffect);
-        return list;
+    public ImprintItem[] getImprintItems() {
+        return ImprintItems;
     }
 
-    public Component getTipComponent() {
-        return tipComponent;
+    public Map<MutableComponent, Boolean> getEffects() {
+        return effects;
     }
 
-    public int getActivation() {
-        return Math.min(getEffectList().size(), activation);
+    public MutableComponent getTipMutableComponent() {
+        return tipMutableComponent;
     }
 
     @Override
@@ -98,11 +56,11 @@ public class SoulImprint {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SoulImprint that = (SoulImprint) o;
-        return hasActionSkills == that.hasActionSkills && Objects.equals(oneImprint, that.oneImprint) && Objects.equals(twoImprint, that.twoImprint) && Objects.equals(threeImprint, that.threeImprint) && Objects.equals(oneEffect, that.oneEffect) && Objects.equals(twoEffect, that.twoEffect) && Objects.equals(threeEffect, that.threeEffect);
+        return Objects.deepEquals(ImprintItems, that.ImprintItems) && Objects.equals(effects, that.effects) && Objects.equals(tipMutableComponent, that.tipMutableComponent);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(oneImprint, twoImprint, threeImprint, oneEffect, twoEffect, threeEffect, hasActionSkills);
+        return Objects.hash(Arrays.hashCode(ImprintItems), effects, tipMutableComponent);
     }
 }

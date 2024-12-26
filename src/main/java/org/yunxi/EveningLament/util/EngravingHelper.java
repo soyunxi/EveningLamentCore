@@ -11,7 +11,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.registries.RegistryObject;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Engraving.Engraving;
-import org.yunxi.EveningLament.api.Engraving.EngravingCategory;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 

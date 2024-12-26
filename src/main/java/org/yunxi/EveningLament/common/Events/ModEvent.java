@@ -1,15 +1,11 @@
 package org.yunxi.EveningLament.common.Events;
 
 
-import com.github.alexthe666.iceandfire.item.DragonSteelTier;
 import com.github.alexthe666.iceandfire.item.ItemModSword;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -17,12 +13,9 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -36,13 +29,13 @@ import net.minecraftforge.fml.common.Mod;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Engraving.Engraving;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
-import org.yunxi.EveningLament.common.SoulImprint.SoulImprintRegister;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 import org.yunxi.EveningLament.util.EngravingHelper;
-import org.yunxi.EveningLament.util.LivingEntityHelper;
-import org.yunxi.EveningLament.util.SoulImprintHelper;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
+import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Eveninglament.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEvent {
@@ -70,7 +63,7 @@ public class ModEvent {
             }
 
 
-            if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 0) {
+            /*if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 0) {
                 player.heal(amount * 0.1f);
             }
             if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 1) {
@@ -82,7 +75,7 @@ public class ModEvent {
                 if (entityLiving.getHealth() / entityLiving.getMaxHealth() <= 0.15f) {
                     entityLiving.hurt(player.level().damageSources().fellOutOfWorld(), entityLiving.getMaxHealth() * 1000);
                 }
-            }
+            }*/
             if (mainHandItem.getItem() instanceof ItemModSword itemModSword) {
                 /*if (itemModSword.getTier() == DragonSteelTier.DRAGONSTEEL_TIER_LIGHTNING) {
                     LivingEntityHelper.chainLightningWithParticles(player.level(), player, entityLiving, 10, 5, amount, 5, true);

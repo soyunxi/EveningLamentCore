@@ -17,6 +17,8 @@ import org.yunxi.EveningLament.api.Imprint.ImprintItem;
 import org.yunxi.EveningLament.api.Imprint.SoulImprint;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 
+import java.util.Map;
+
 @Mod.EventBusSubscriber(modid = Eveninglament.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SoulImprintRegister {
     public static final ResourceKey<Registry<SoulImprint>> SOUL_IMPRINT_REGISTRY_KEY =
@@ -24,19 +26,15 @@ public class SoulImprintRegister {
 
     public static final DeferredRegister<SoulImprint> SOUL_IMPRINTS =
             DeferredRegister.create(SOUL_IMPRINT_REGISTRY_KEY, Eveninglament.MODID);
-    
-    public static final RegistryObject<SoulImprint> PARANOIA =
-            SOUL_IMPRINTS.register("paranoia", () -> new SoulImprint(
-                    (ImprintItem)ItemRegister.DROP.get(),
-                    (ImprintItem)ItemRegister.REVIVIFICATION.get(),
-                    (ImprintItem)ItemRegister.RISE.get(),
-                    Component.translatable("tooltip.eveninglament.paranoia1"),
-                    Component.translatable("tooltip.eveninglament.paranoia2"),
-                    Component.translatable("tooltip.eveninglament.paranoia3"),
-                    null,
-                    2,
-                    true
-            ));
+
+    public static final RegistryObject<SoulImprint> SOUL_IMPRINT_1 = SOUL_IMPRINTS.register("soul_imprint_1", () ->
+            new SoulImprint(new ImprintItem[] {(ImprintItem) ItemRegister.DROP.get(),
+                    (ImprintItem) ItemRegister.REVIVIFICATION.get(),
+                    (ImprintItem) ItemRegister.RISE.get()},
+                    Map.of(Component.translatable("tooltip.eveninglament.paranoia1"), false,
+                            Component.translatable("tooltip.eveninglament.paranoia2"), false/*,
+                            Component.translatable("tooltip.eveninglament.paranoia3"), false*/),
+                    Component.translatable("soulimprint.eveninglament.paranoia")));
 
     public static void register(IEventBus eventBus) {
         SOUL_IMPRINTS.register(eventBus);
