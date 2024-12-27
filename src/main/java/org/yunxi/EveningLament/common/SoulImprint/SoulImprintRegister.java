@@ -32,8 +32,8 @@ public class SoulImprintRegister {
                     (ImprintItem) ItemRegister.REVIVIFICATION.get(),
                     (ImprintItem) ItemRegister.RISE.get()},
                     Map.of(Component.translatable("tooltip.eveninglament.paranoia1"), false,
-                            Component.translatable("tooltip.eveninglament.paranoia2"), false/*,
-                            Component.translatable("tooltip.eveninglament.paranoia3"), false*/),
+                            Component.translatable("tooltip.eveninglament.paranoia2"), true,
+                            Component.translatable("tooltip.eveninglament.paranoia3"), false),
                     Component.translatable("soulimprint.eveninglament.paranoia")));
 
     public static void register(IEventBus eventBus) {

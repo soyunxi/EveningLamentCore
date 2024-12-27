@@ -39,10 +39,9 @@ public abstract class ImprintItem extends Item implements IImprint {
             int temp = 0;
             for (Map.Entry<MutableComponent, Boolean> entry : effects.entrySet()) {
                 if (temp < takeEffect){
-                    p_41423_.add(Component.nullToEmpty(temp + "," + takeEffect));
                     if (entry.getValue()) {
-                        p_41423_.add(action.append(entry.getKey()).withStyle(activatedColors[temp]));
-                    } else p_41423_.add(entry.getKey().withStyle(activatedColors[temp]));
+                        p_41423_.add(action.append(entry.getKey()).withStyle(activatedColors[temp + 3 - soulImprint.getEffectSize()]));
+                    } else p_41423_.add(entry.getKey().withStyle(activatedColors[temp + 3 - soulImprint.getEffectSize()]));
                 } else {
                     MutableComponent mutableComponent = entry.getKey().withStyle(notActivated);
                     if (entry.getValue()) {

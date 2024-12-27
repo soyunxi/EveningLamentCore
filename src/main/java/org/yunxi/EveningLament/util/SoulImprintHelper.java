@@ -22,7 +22,7 @@ public final class SoulImprintHelper {
                 if (SuperpositionHandler.hasCurio(player, imprint)) takeEffect++;
             }
         }
-        return Math.min(takeEffect, soulImprint.getEffectSize());
+        return Math.min(takeEffect, 3);
     }
 
     public static int getTakeEffectLevel(SoulImprint soulImprint) {
