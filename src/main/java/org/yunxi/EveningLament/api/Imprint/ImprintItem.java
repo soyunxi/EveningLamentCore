@@ -2,8 +2,11 @@ package org.yunxi.EveningLament.api.Imprint;
 
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -13,8 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import org.yunxi.EveningLament.util.SoulImprintHelper;
 import top.theillusivec4.curios.api.SlotContext;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class ImprintItem extends Item implements IImprint {
     public ImprintItem(Properties p_41383_) {
@@ -22,38 +24,73 @@ public abstract class ImprintItem extends Item implements IImprint {
     }
 
     @Override
-    public void appendHoverText(ItemStack p_41421_, @Nullable Level p_41422_, List<Component> p_41423_, TooltipFlag p_41424_) {
+    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
         SoulImprint soulImprint = SoulImprintHelper.getSoulImprint(this);
-        if (soulImprint != null) {
+        LocalPlayer player = Minecraft.getInstance().player;
+        if (soulImprint != null && player != null) {
             int takeEffect = SoulImprintHelper.getTakeEffectLevel(soulImprint);
             MutableComponent tipMutableComponent = soulImprint.getTipMutableComponent();
-            p_41423_.add(tipMutableComponent);
-            MutableComponent action = Component.nullToEmpty("[").copy()
-                    .append("imprint.actions.name")
-                    .append("]")
-                    .append(" ");
-            Map<MutableComponent, Boolean> effects = soulImprint.getEffects();
-            ChatFormatting[] activatedColors = {ChatFormatting.GREEN, ChatFormatting.DARK_BLUE, ChatFormatting.RED};
-            ChatFormatting notActivated = ChatFormatting.DARK_GRAY;
+            components.add(tipMutableComponent);
+            LinkedHashMap<MutableComponent, Boolean> effects = soulImprint.getEffects();
+            ChatFormatting[] activatedColors = {ChatFormatting.GREEN, ChatFormatting.AQUA, ChatFormatting.LIGHT_PURPLE};
+            ChatFormatting not = ChatFormatting.DARK_GRAY;
+            ChatFormatting has = ChatFormatting.GREEN;
 
             int temp = 0;
             for (Map.Entry<MutableComponent, Boolean> entry : effects.entrySet()) {
-                if (temp < takeEffect){
+                ChatFormatting activatedColor = activatedColors[temp + 3 - soulImprint.getEffectSize()];
+                MutableComponent append = Component.nullToEmpty("[").copy()
+                        .append(Component.translatable("imprint.actions.name"))
+                        .append("]")
+                        .append(" ")
+                        .append(entry.getKey());
+                if (temp < takeEffect) {
                     if (entry.getValue()) {
-                        p_41423_.add(action.append(entry.getKey()).withStyle(activatedColors[temp + 3 - soulImprint.getEffectSize()]));
-                    } else p_41423_.add(entry.getKey().withStyle(activatedColors[temp + 3 - soulImprint.getEffectSize()]));
+                        components.add(append.setStyle(Style.EMPTY.withColor(activatedColor)));
+                    } else
+                        components.add(entry.getKey().setStyle(Style.EMPTY.withColor(activatedColor)));
                 } else {
-                    MutableComponent mutableComponent = entry.getKey().withStyle(notActivated);
                     if (entry.getValue()) {
-                        p_41423_.add(action.append(mutableComponent));
+                        components.add(append.setStyle(Style.EMPTY.withColor(not)));
                     } else {
-                        p_41423_.add(mutableComponent);
+                        components.add(entry.getKey().setStyle(Style.EMPTY.withColor(not)));
                     }
                 }
                 temp++;
             }
+
+            MutableComponent translatable = Component.translatable("imprint.contain.all").append(":");
+            List<ImprintItem> imprintItems = new ArrayList<>(List.of(soulImprint.getImprintItems()));
+            imprintItems.remove(this);
+            if (SuperpositionHandler.hasCurio(player, this))
+            translatable.append(Component.nullToEmpty("[").copy().append(this.getDescription()).append("]").setStyle(Style.EMPTY.withColor(has)));
+            else if (SoulImprintHelper.getPLayerHasTakeEffect(soulImprint) < Math.min(soulImprint.getImprintItems().length, 3)){
+                translatable.append(Component.nullToEmpty("[").copy().append(this.getDescription()).append("]").setStyle(Style.EMPTY.withColor(not)));
+            }
+
+            List<ImprintItem> copy = new ArrayList<>(imprintItems);
+            imprintItems.removeIf(imprintItem -> !SuperpositionHandler.hasCurio(player, imprintItem));
+            copy.removeIf(imprintItem -> SuperpositionHandler.hasCurio(player, imprintItem));
+            imprintItems.addAll(copy);
+
+            int k = Math.min(soulImprint.getImprintItems().length, 3) <= SoulImprintHelper.getPLayerHasTakeEffect(soulImprint) ? Math.min(imprintItems.size(), 2) : imprintItems.size();
+            for (int i = 0; i < k; i++) {
+                if (i == 0) translatable.append(",");
+                if (SuperpositionHandler.hasCurio(player, imprintItems.get(i))) {
+                    translatable.append(Component.nullToEmpty("[").copy().append(imprintItems.get(i).getDescription()).append("]").setStyle(Style.EMPTY.withColor(has)));
+                } else {
+                    translatable.append(Component.nullToEmpty("[").copy().append(imprintItems.get(i).getDescription()).append("]").setStyle(Style.EMPTY.withColor(not)));
+                }
+                if (i != imprintItems.size() - 1) {
+                    translatable.append(",");
+                }
+            }
+
+
+            components.add(translatable);
+
         }
-        super.appendHoverText(p_41421_, p_41422_, p_41423_, p_41424_);
+        super.appendHoverText(itemStack, level, components, tooltipFlag);
     }
 
     @Override

@@ -14,6 +14,7 @@
   "imprint.contain.all": "Soul Resonance",
   "imprint.take.noactionskills": "With active skills, requires at least level %d Soul Resonance to activate.",
   "imprint.take.hasactionskills": "With active skills, press [%s] to release active skills.",
+  "imprint.actions.name": "Activated",
   "key.eveninglament.category": "Evening Lament",
   "key.eveninglament.soul_imprint": "Soul Resonance Active Skill",
 
@@ -45,4 +46,5 @@
   "engraving.eveninglament.spoon.desc" : "Your tools are treated as axes, shovels, and hoes.",
 
   "curios.identifier.imprint": "Soul Imprint"
+
 }

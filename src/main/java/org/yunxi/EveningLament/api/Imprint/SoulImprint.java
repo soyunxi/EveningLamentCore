@@ -2,22 +2,19 @@ package org.yunxi.EveningLament.api.Imprint;
 
 import net.minecraft.network.chat.MutableComponent;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class SoulImprint {
     private final ImprintItem[] ImprintItems; //灵魂刻印物品
 
-    private final Map<MutableComponent, Boolean> effects; //效果
+    private final LinkedHashMap<MutableComponent, Boolean> effects; //效果
 
     private final MutableComponent tipMutableComponent; //灵魂共鸣的名字
 
-    public SoulImprint(ImprintItem[] ImprintItems, Map<MutableComponent, Boolean> effects, MutableComponent tipMutableComponent) {
+    public SoulImprint(ImprintItem[] ImprintItems, LinkedHashMap<MutableComponent, Boolean> effects, MutableComponent tipMutableComponent) {
         this.ImprintItems = ImprintItems;
         if (effects.keySet().size() > ImprintItems.length) {
-            this.effects = new HashMap<>();
+            this.effects = new LinkedHashMap<>();
             int count = 0;
             for (MutableComponent key : effects.keySet()) {
                 if (count++ >= ImprintItems.length) break;
@@ -43,7 +40,7 @@ public class SoulImprint {
         return ImprintItems;
     }
 
-    public Map<MutableComponent, Boolean> getEffects() {
+    public LinkedHashMap<MutableComponent, Boolean> getEffects() {
         return effects;
     }
 

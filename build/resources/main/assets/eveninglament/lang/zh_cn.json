@@ -14,6 +14,7 @@
   "imprint.contain.all": "灵魂共鸣",
   "imprint.take.noactionskills": "拥有主动技能，至少需要激活%d级灵魂共鸣后开启",
   "imprint.take.hasactionskills": "拥有主动技能，按下[%s]键释放主动技能",
+  "imprint.actions.name": "主动",
   "key.eveninglament.category": "Evening Lament",
   "key.eveninglament.soul_imprint": "灵魂共鸣主动技能",
 
