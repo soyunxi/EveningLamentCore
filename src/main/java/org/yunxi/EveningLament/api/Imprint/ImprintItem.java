@@ -16,7 +16,10 @@ import org.jetbrains.annotations.Nullable;
 import org.yunxi.EveningLament.util.SoulImprintHelper;
 import top.theillusivec4.curios.api.SlotContext;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class ImprintItem extends Item implements IImprint {
     public ImprintItem(Properties p_41383_) {

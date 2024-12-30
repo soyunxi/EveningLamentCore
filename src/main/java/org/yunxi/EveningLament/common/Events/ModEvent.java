@@ -29,8 +29,10 @@ import net.minecraftforge.fml.common.Mod;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Engraving.Engraving;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
+import org.yunxi.EveningLament.common.SoulImprint.SoulImprintRegister;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 import org.yunxi.EveningLament.util.EngravingHelper;
+import org.yunxi.EveningLament.util.SoulImprintHelper;
 
 import java.util.Map;
 import java.util.Objects;
@@ -63,19 +65,19 @@ public class ModEvent {
             }
 
 
-            /*if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 0) {
+            if (SoulImprintHelper.getTakeEffectLevel(SoulImprintRegister.PARANOIA.get()) > 0) {
                 player.heal(amount * 0.1f);
             }
-            if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 1) {
+            if (SoulImprintHelper.getTakeEffectLevel(SoulImprintRegister.PARANOIA.get()) > 1) {
                 if (entityLiving.getHealth() / entityLiving.getMaxHealth() <= 0.4f) {
                     event.setAmount(amount + amount * 0.2f);
                 }
             }
-            if (SoulImprintHelper.getTakeEffect(SoulImprintRegister.PARANOIA.get()) > 2) {
+            if (SoulImprintHelper.getTakeEffectLevel(SoulImprintRegister.PARANOIA.get()) > 2) {
                 if (entityLiving.getHealth() / entityLiving.getMaxHealth() <= 0.15f) {
                     entityLiving.hurt(player.level().damageSources().fellOutOfWorld(), entityLiving.getMaxHealth() * 1000);
                 }
-            }*/
+            }
             if (mainHandItem.getItem() instanceof ItemModSword itemModSword) {
                 /*if (itemModSword.getTier() == DragonSteelTier.DRAGONSTEEL_TIER_LIGHTNING) {
                     LivingEntityHelper.chainLightningWithParticles(player.level(), player, entityLiving, 10, 5, amount, 5, true);

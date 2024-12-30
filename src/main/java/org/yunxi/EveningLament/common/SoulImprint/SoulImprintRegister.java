@@ -3,7 +3,6 @@ package org.yunxi.EveningLament.common.SoulImprint;
 
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,16 +12,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.RegistryBuilder;
 import net.minecraftforge.registries.RegistryObject;
-import org.openjdk.nashorn.internal.objects.LinkedMap;
 import org.yunxi.EveningLament.Eveninglament;
 import org.yunxi.EveningLament.api.Imprint.ImprintItem;
 import org.yunxi.EveningLament.api.Imprint.SoulImprint;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Mod.EventBusSubscriber(modid = Eveninglament.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SoulImprintRegister {
@@ -33,7 +28,7 @@ public class SoulImprintRegister {
             DeferredRegister.create(SOUL_IMPRINT_REGISTRY_KEY, Eveninglament.MODID);
 
 
-    public static final RegistryObject<SoulImprint> SOUL_IMPRINT_1 = SOUL_IMPRINTS.register("soul_imprint_1", () ->
+    public static final RegistryObject<SoulImprint> PARANOIA = SOUL_IMPRINTS.register("paranoia", () ->
             new SoulImprint(new ImprintItem[] {
                     (ImprintItem) ItemRegister.DROP.get(),
                     (ImprintItem) ItemRegister.REVIVIFICATION.get(),
