@@ -6,7 +6,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraftforge.registries.RegistryObject;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,15 +33,19 @@ public abstract class ItemStackMixin {
 
     @Shadow public abstract boolean hasTag();
 
+    @Shadow public abstract Item getItem();
+
     @Inject(method = "getTooltipLines", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;appendEnchantmentNames(Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
     private void EngravingTooltipLines(Player p_41652_, TooltipFlag p_41653_, CallbackInfoReturnable<List<Component>> cir, List list, MutableComponent mutablecomponent, int j) {
         ItemStack copy = this.copy();
         Map<Engraving, Integer> engravings = EngravingHelper.getEngravings(copy);
-        if (!engravings.isEmpty()) {
+        if (EngravingHelper.getMaxGradeLevel(copy) > 5 || copy.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())) {
             list.add(Component.translatable("engraving.tooltip"));
-            if (!copy.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get())) {
-                list.add(Component.translatable("eveninglament.tooltip.engraving.grade_level", EngravingHelper.getGradeLevel(copy)));
+            if (!copy.getItem().equals(ItemRegister.FLOURISHING_BLOSSOM_ENGRAVING.get()) && !copy.getItem().equals(Items.ENCHANTED_BOOK)) {
+                list.add(Component.translatable("eveninglament.tooltip.engraving.grade_level", EngravingHelper.getGradeLevel(copy), EngravingHelper.getMaxGradeLevel(copy)));
             }
+        }
+        if (!engravings.isEmpty()) {
             for (Engraving engraving : engravings.keySet()) {
                 MutableComponent translatable = Component.translatable("name.engraving.grade." + engraving.getGrade().getGradeName());
                 for (RegistryObject<Engraving> entry : EngravingRegister.ENGRAVINGS.getEntries()) {

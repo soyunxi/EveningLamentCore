@@ -15,7 +15,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import org.yunxi.EveningLament.common.Blocks.BlockRegister;
 import org.yunxi.EveningLament.common.Engraving.EngravingRegister;
+import org.yunxi.EveningLament.common.Events.EquipmentBenedictionRegister;
 import org.yunxi.EveningLament.common.SoulImprint.SoulImprintRegister;
 import org.yunxi.EveningLament.common.items.ItemRegister;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -28,16 +30,15 @@ public class Eveninglament {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "eveninglament";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public Eveninglament() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         ItemRegister.register(modEventBus);
         EngravingRegister.register(modEventBus);
         SoulImprintRegister.register(modEventBus);
+        BlockRegister.register(modEventBus);
 //        DamageTypeRegister.register(modEventBus);
-
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -48,9 +49,13 @@ public class Eveninglament {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::enqueue);
+
+
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
+    private void commonSetup(FMLCommonSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(EquipmentBenedictionRegister.class);
+        LOGGER.info("Hello from EveningLament log");
     }
 
     // Add the example block item to the building blocks tab

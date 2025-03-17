@@ -1,16 +1,17 @@
 {
   "eveninglament.tooltip.space" : " ",
-  "engraving.tooltip" : "§6魔咒:",
-  "tooltip.eveninglament.engraving.holdShift": "§5按住 §rShift§r§5 查看魔咒介绍。",
-  "eveninglament.tooltip.engraving.grade_level": "§4已使用位阶:§r%d",
+  "engraving.tooltip" : "§6花语刻印:",
+  "tooltip.eveninglament.engraving.holdShift": "§5按住 §rShift§r§5 查看花语刻印介绍。",
+  "eveninglament.tooltip.engraving.grade_level": "§4已使用位阶:§r%d / §r%d",
   "name.engraving.grade.common": "§a萌芽",
-  "name.engraving.grade.uncommon": "§d含苞",
-  "name.engraving.grade.epic": "§c绽放",
-  "name.engraving.grade.legend": "§6绮卉",
-  "name.engraving.grade.mythic": "§7落英",
-  "jei.info.eveninglament.engraving" : "魔咒：",
+  "name.engraving.grade.uncommon": "§d蓓蕾",
+  "name.engraving.grade.epic": "§c初绽",
+  "name.engraving.grade.legend": "§6盛放",
+  "name.engraving.grade.mythic": "§7永华",
+  "eveninglament.tooltip.engraving.level" : "+",
+  "jei.info.eveninglament.engraving" : "花语刻印：",
   "jei.info.eveninglament.engraving.level" : "等级：%d",
-  "jei.info.eveninglament.engraving.deplete" : "刻印消耗：%d",
+  "jei.info.eveninglament.engraving.deplete" : "篆刻消耗：%d",
   "imprint.contain.all": "灵魂共鸣",
   "imprint.take.noactionskills": "拥有主动技能，至少需要激活%d级灵魂共鸣后开启",
   "imprint.take.hasactionskills": "拥有主动技能，按下[%s]键释放主动技能",
@@ -22,9 +23,15 @@
   "item.eveninglament.rise": "♭之章",
   "item.eveninglament.revivification": "♮之章",
   "item.eveninglament.drop": "♯之章",
+  "item.eveninglament.flourishing_blossom_engraving": "花篆典册",
+  "item.eveninglament.blood_orange": "血橙",
+
+  "block.eveninglament.red_obsidian": "红色发光黑曜石",
+
   "tooltip.eveninglament.paranoia1": "每次攻击恢复造成伤害10%的生命值",
   "tooltip.eveninglament.paranoia2": "对血量低于40%的生物造成20%的额外伤害",
   "tooltip.eveninglament.paranoia3": "处决血量低于15%的生物",
+  "tooltip.imprint.life.doce1": "独特饰品",
 
   "message.eveninglament.soul_eater_kill_count": "§5成功吞噬了一个生物，当前已吞噬了§r§6%d§r§5个生物",
   "message.eveninglament.gamephase.break": "§c你还不能破坏这个方块，按住shift以强制破坏该方块",
@@ -38,6 +45,7 @@
   "engraving.eveninglament.void_gift" : "§5虚空赠礼",
   "engraving.eveninglament.world_library" : "§6世界图书馆",
   "engraving.eveninglament.spoon" : "勺子",
+  "engraving.eveninglament.gluttony" : "七罪-暴食",
   "engraving.eveninglament.unbreakable.desc" : "装备不会被摧毁",
   "engraving.eveninglament.relentless.desc" : "有50%几率无视目标免伤机制",
   "engraving.eveninglament.celestial.desc" : "创造模式飞行，但每30秒消耗一点耐久",
@@ -46,6 +54,11 @@
   "engraving.eveninglament.void_gift.desc" : "将少量伤害转化为无视护甲的虚空伤害",
   "engraving.eveninglament.world_library.desc" : "将钓上的物品转换为随机附魔书，品质与幸运值成正比，但使用消耗的耐久会提高",
   "engraving.eveninglament.spoon.desc" : "你的工具会被视为斧，铲，锄头",
+  "engraving.eveninglament.gluttony.desc" : "溢出伤害会被转换成饱食度和饱和度，只能吃肉，你食用物品的时间会加快，但回复量减半，且会获得负面效果",
 
-  "curios.identifier.imprint": "灵魂刻印"
+  "curios.identifier.imprint": "灵魂刻印",
+  "itemGroup.eveninglament.engraving_tab": "花篆典册",
+  "itemGroup.eveninglament.main_tab": "Evening Lament",
+
+  "message.eveninglament.gamephase.add": "解锁了新的阶段:%s"
 }

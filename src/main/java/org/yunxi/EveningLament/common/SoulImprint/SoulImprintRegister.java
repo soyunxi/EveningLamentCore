@@ -13,6 +13,7 @@ import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.RegistryBuilder;
 import net.minecraftforge.registries.RegistryObject;
 import org.yunxi.EveningLament.Eveninglament;
+import org.yunxi.EveningLament.api.Engraving.Engraving;
 import org.yunxi.EveningLament.api.Imprint.ImprintItem;
 import org.yunxi.EveningLament.api.Imprint.SoulImprint;
 import org.yunxi.EveningLament.common.items.ItemRegister;
@@ -39,6 +40,17 @@ public class SoulImprintRegister {
                         put(Component.translatable("tooltip.eveninglament.paranoia3"), false);
                     }},
                     Component.translatable("soulimprint.eveninglament.paranoia")));
+
+    public static final RegistryObject<SoulImprint> LIFE = SOUL_IMPRINTS.register("life", () ->
+            new SoulImprint(new ImprintItem[] {
+                    (ImprintItem) ItemRegister.MORNING_DEW.get(),
+                    (ImprintItem) ItemRegister.SPLENDID.get()},
+                    new LinkedHashMap<>() {{
+                        put(Component.translatable("tooltip.eveninglament.life2"), false);
+                        put(Component.translatable("tooltip.eveninglament.life3"), false);
+                    }},
+                    Component.translatable("soulimprint.eveninglament.life"))
+    );
 
     public static void register(IEventBus eventBus) {
         SOUL_IMPRINTS.register(eventBus);

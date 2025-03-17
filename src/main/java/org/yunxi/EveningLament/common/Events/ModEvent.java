@@ -15,7 +15,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.portal.PortalShape;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -23,6 +25,8 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -149,6 +153,7 @@ public class ModEvent {
 
         }
     }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLowestLivingDeath(LivingDeathEvent event) {
         Entity entity = event.getSource().getEntity();
@@ -187,37 +192,64 @@ public class ModEvent {
         }
     }
 
-    @SubscribeEvent
-    public static void onFinishLivingEntityUseItem(LivingEntityUseItemEvent.Finish event) {
-        LivingEntity entity = event.getEntity();
-        ItemStack item = event.getItem();
-        if (entity instanceof Player player) {
-            if (item.getItem().isEdible()) {
-                if (EngravingHelper.hasEngraving(player.getInventory().armor.get(3), EngravingRegister.GLUTTONY.get())){
-                    player.getFoodData().eat((int) (-Objects.requireNonNull(item.getFoodProperties(player)).getNutrition() * 0.5), -Objects.requireNonNull(item.getFoodProperties(player)).getSaturationModifier() * 0.5f);
-                    //TODO 修bug
-                    if ((20 - player.getFoodData().getFoodLevel()) <= (item.getFoodProperties(player).getNutrition() * 0.5f)){
-                        player.getFoodData().eat((int) (Objects.requireNonNull(item.getFoodProperties(player)).getNutrition() * 0.5), Objects.requireNonNull(item.getFoodProperties(player)).getSaturationModifier() * 0.5f);
-
-                    }
-                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 1, false, true));
-                    player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 1, false, true));
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onStartLivingEntityUseItem(LivingEntityUseItemEvent.Start event) {
         LivingEntity entity = event.getEntity();
         ItemStack item = event.getItem();
         if (entity instanceof Player player) {
             if (item.getItem().isEdible()) {
                 if (EngravingHelper.hasEngraving(player.getInventory().armor.get(3), EngravingRegister.GLUTTONY.get())){
+                    if (!Objects.requireNonNull(item.getFoodProperties(player)).isMeat()){
+                        event.setCanceled(true);
+                        return;
+                    }
                     event.setDuration((int) (event.getDuration() * 0.1f));
+                    CompoundTag orCreateTagElement = item.getOrCreateTagElement(Eveninglament.MODID);
+                    CompoundTag compoundTag = new CompoundTag();
+                    compoundTag.putInt("nutrition", player.getFoodData().getFoodLevel());
+                    compoundTag.putFloat("saturation", player.getFoodData().getSaturationLevel());
+                    orCreateTagElement.put("food", compoundTag);
+
                 }
             }
         }
+    }
+
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onFinishLivingEntityUseItem(LivingEntityUseItemEvent.Finish event) {
+        LivingEntity entity = event.getEntity();
+        ItemStack item = event.getItem();
+        if (entity instanceof Player player) {
+            if (item.getItem().isEdible()) {
+                if (EngravingHelper.hasEngraving(player.getInventory().armor.get(3), EngravingRegister.GLUTTONY.get())){
+                    CompoundTag orCreateTagElement = item.getOrCreateTagElement(Eveninglament.MODID);
+                    if (orCreateTagElement.contains("food")) {
+                        FoodData foodData = player.getFoodData();
+                        CompoundTag compound = orCreateTagElement.getCompound("food");
+                        foodData.setFoodLevel(compound.getInt("nutrition"));
+                        foodData.setSaturation(compound.getFloat("saturation"));
+
+                        FoodProperties foodProperties = item.getFoodProperties(player);
+                        int nutrition = (int) (foodProperties.getNutrition() * 0.5f);
+                        float saturation = foodProperties.getSaturationModifier() * 0.5f;
+
+                        foodData.eat(nutrition, saturation);
+
+                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 1, false, true));
+                        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 1, false, true));
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    @SubscribeEvent
+    public static void onAnvilUpdate(BlockEvent.PortalSpawnEvent event) {
+        PortalShape portalSize = event.getPortalSize();
+        portalSize.isComplete();
     }
 
     /*@SubscribeEvent

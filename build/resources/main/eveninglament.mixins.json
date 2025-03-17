@@ -6,14 +6,11 @@
   "refmap": "eveninglament.refmap.json",
   "mixins": [
     "LightningBoltMixin",
-    "BlueSkies.LivingEntityHooksMixin",
-    "BlueSkies.PlayerHooksMixin",
-    "BlueSkies.SkiesEntityHooksMixin",
     "Engraving.AquaFishingBobberEntityMixin",
+    "Engraving.DiggerItemMixin",
     "Engraving.FishingHookMixin",
     "Engraving.ItemMixin",
     "Engraving.ItemStackMixin",
-    "Engraving.DiggerItemMixin",
     "enigmaticlegacy.CursedRingMixin",
     "enigmaticlegacy.CursedScrollMixin",
     "enigmaticlegacy.EnigmaticEventHandlerMixin"

@@ -146,4 +146,41 @@ public final class EngravingHelper {
         }
         return gradeLevel;
     }
+
+    public static int getMaxGradeLevel(ItemStack itemStack) {
+        int gradeLevel = 5;
+
+        //附魔总等级加成
+        int sumEnchantment = 0;
+        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(itemStack);
+        for (Integer value : enchantments.values()) {
+            sumEnchantment += value;
+        }
+        int MAX_SUM = 20;   // 硬性最大值
+        int LINEAR_LIMIT = 8;   // 线性区间阈值（<=此值时应用线性规则）
+        double LINEAR_FACTOR = 0.65;     // 线性阶段增长系数（1.0为原值，2.0为双倍）
+        double K = 0.25;    // 衰减系数（控制曲线陡峭度）
+        if (sumEnchantment <= LINEAR_LIMIT) {
+            // 线性增长阶段：原始值 * 系数，但不超过MAX_SUM
+            int linearValue = (int) Math.round(sumEnchantment * LINEAR_FACTOR);
+            gradeLevel += Math.min(linearValue, MAX_SUM);
+        } else {
+            // 衰减阶段：非线性增长公式
+            double adjusted = MAX_SUM * (1 - Math.exp(-K * (sumEnchantment - LINEAR_LIMIT) / MAX_SUM));
+            gradeLevel +=  Math.min((int) Math.round(adjusted + (LINEAR_LIMIT * LINEAR_FACTOR)), MAX_SUM);
+        }
+
+        //最大耐久加成
+        int maxDamage = itemStack.getMaxDamage();
+        int MIN_OUTPUT = 3;   // 输出最小值
+        int MAX_OUTPUT = 50;   // 输出最大值
+        double CURVE_FACTOR = 0.0001; // 曲线陡峭度（越小低值增长越慢）
+        if (maxDamage <= 0) gradeLevel += MIN_OUTPUT;
+        // 使用指数函数抑制低值增长
+        double ratio = 1 - Math.exp(-CURVE_FACTOR * maxDamage);
+        int result = (int) Math.round(MIN_OUTPUT + (MAX_OUTPUT - MIN_OUTPUT) * ratio);
+        gradeLevel += Math.min(result, MAX_OUTPUT);
+
+        return gradeLevel;
+    }
 }

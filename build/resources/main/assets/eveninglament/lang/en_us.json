@@ -1,13 +1,14 @@
 {
   "eveninglament.tooltip.space" : " ",
-  "engraving.tooltip" : "§6Engraving:",
-  "tooltip.eveninglament.engraving.holdShift": "§5Hold §rShift§r§5 to view the Engraving description.",
+  "engraving.tooltip" : "§6Flowerglyph Engraving:",
+  "tooltip.eveninglament.engraving.holdShift": "§5Hold §rShift§r§5 to view the Flowerglyph Engraving description.",
   "eveninglament.tooltip.engraving.grade_level": "§4Used Grade:§r%d",
-  "name.engraving.grade.common": "§aSprout",
-  "name.engraving.grade.uncommon": "§dBudding",
-  "name.engraving.grade.epic": "§cBlooming",
-  "name.engraving.grade.legend": "§6Splendid Bloom",
-  "name.engraving.grade.mythic": "§7Fallen Petals",
+  "name.engraving.grade.common": "§aSprout Engraving",
+  "name.engraving.grade.uncommon": "§dBud Engraving",
+  "name.engraving.grade.epic": "§cBloom Engraving",
+  "name.engraving.grade.legend": "§6Flourish Engraving",
+  "name.engraving.grade.mythic": "§7Eternal Engraving",
+  "eveninglament.tooltip.engraving.level" : "+",
   "jei.info.eveninglament.engraving" : "Engraving:",
   "jei.info.eveninglament.engraving.level" : "Level: %d",
   "jei.info.eveninglament.engraving.deplete" : "Engraving Consumption: %d",
@@ -22,6 +23,11 @@
   "item.eveninglament.rise": "♭ Chapter",
   "item.eveninglament.revivification": "♮ Chapter",
   "item.eveninglament.drop": "♯ Chapter",
+  "item.eveninglament.flourishing_blossom_engraving": "Petalescript Tome",
+  "item.eveninglament.blood_orange": "Blood Orange",
+
+  "block.eveninglament.red_obsidian": "Red Glowing Obsidian",
+
   "tooltip.eveninglament.paranoia1": "Restores 10% of the damage dealt as health on each attack.",
   "tooltip.eveninglament.paranoia2": "Deals 20% extra damage to creatures below 40% health.",
   "tooltip.eveninglament.paranoia3": "Executes creatures below 15% health.",
@@ -45,6 +51,11 @@
   "engraving.eveninglament.world_library.desc" : "Converts fished items into random enchanted books. The quality is proportional to luck, but the durability consumption is increased.",
   "engraving.eveninglament.spoon.desc" : "Your tools are treated as axes, shovels, and hoes.",
 
-  "curios.identifier.imprint": "Soul Imprint"
+  "curios.identifier.imprint": "Soul Imprint",
+
+  "itemGroup.eveninglament.engraving_tab": "Petalescript Tome",
+  "itemGroup.eveninglament.main_tab": "Evening Lament",
+
+  "message.eveninglament.gamephase.add": "Entered a new stage:%s"
 
 }

@@ -28,7 +28,7 @@ public abstract class ImprintItem extends Item implements IImprint {
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
-        SoulImprint soulImprint = SoulImprintHelper.getSoulImprint(this);
+        /*SoulImprint soulImprint = SoulImprintHelper.getSoulImprint(this);
         LocalPlayer player = Minecraft.getInstance().player;
         if (soulImprint != null && player != null) {
             int takeEffect = SoulImprintHelper.getTakeEffectLevel(soulImprint);
@@ -92,7 +92,7 @@ public abstract class ImprintItem extends Item implements IImprint {
 
             components.add(translatable);
 
-        }
+        }*/
         super.appendHoverText(itemStack, level, components, tooltipFlag);
     }
 

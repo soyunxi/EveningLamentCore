@@ -30,7 +30,6 @@ java {
 }
 
 minecraft {
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     // The mappings can be changed at any time and must be in the following format.
     // Channel:   Version:
     // official   MCVersion             Official field/method names from Mojang mapping files
@@ -121,6 +120,7 @@ minecraft {
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 }
 
 mixin {
@@ -224,6 +224,11 @@ dependencies {
     implementation fg.deobf("curse.maven:malum-484064:5848770")
     implementation fg.deobf("curse.maven:game-phase-975444:5115068")
     implementation fg.deobf("curse.maven:ice-and-fire-dragons-264231:5633453")
+    implementation fg.deobf("curse.maven:tetra-289712:5957838")
+    implementation fg.deobf("curse.maven:spartan-weaponry-278141:5597663")
+    implementation fg.deobf("curse.maven:equipmentbenediction-1023414:5657597")
+    implementation fg.deobf("curse.maven:exmodifier-1097727:6292522")
+    implementation fg.deobf("curse.maven:roughly-enough-items-310111:5846923")
 
     // Compile against only the API artifact
 //    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.9.1+1.20.1:api"))
