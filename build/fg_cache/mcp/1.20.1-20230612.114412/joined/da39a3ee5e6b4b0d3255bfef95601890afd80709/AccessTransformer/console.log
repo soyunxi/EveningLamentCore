@@ -1,0 +1,6 @@
+JVM:         C:\Users\yunxi\.jdks\temurin-17.0.13\bin\java.exe
+JVM Args:    
+Run Args:    "--inJar", "F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\rename\output.jar", "--outJar", "F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\AccessTransformer\output.jar", "--atFile", "F:\Minecraft Mod\Evening Lament\src\main\resources\META-INF\accesstransformer.cfg", "--atFile", "C:\Users\yunxi\AppData\Local\Temp\FG_ats_3803208377753038709.cfg"
+Classpath:   C:\Users\yunxi\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\accesstransformers\8.2.1\accesstransformers-8.2.1-fatjar.jar
+Working Dir: F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\AccessTransformer
+Main Class:  net.minecraftforge.accesstransformer.TransformerProcessor

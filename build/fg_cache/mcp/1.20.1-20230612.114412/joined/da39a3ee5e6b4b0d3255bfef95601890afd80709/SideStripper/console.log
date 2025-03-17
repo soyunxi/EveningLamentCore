@@ -1,0 +1,9 @@
+JVM:         C:\Users\yunxi\.jdks\temurin-17.0.13\bin\java.exe
+JVM Args:    
+Run Args:    "--strip", "--input", "F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\AccessTransformer\output.jar", "--output", "F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\SideStripper\output.jar", "--data", "F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\SideStripper\string_data.sas"
+Classpath:   C:\Users\yunxi\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\mergetool\1.1.7\mergetool-1.1.7-fatjar.jar
+Working Dir: F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\SideStripper
+Main Class:  net.minecraftforge.mergetool.ConsoleMerger
+Input:  F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\AccessTransformer\output.jar
+Output: F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\SideStripper\output.jar
+Data:   F:\Minecraft Mod\Evening Lament\build\fg_cache\mcp\1.20.1-20230612.114412\joined\da39a3ee5e6b4b0d3255bfef95601890afd80709\SideStripper\string_data.sas
